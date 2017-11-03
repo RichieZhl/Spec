@@ -16,6 +16,7 @@ a copy of https://github.com/ivpusic/react-native-image-crop-picker
 
   s.source_files = 'react-native-image-crop-picker/Classes/*.{h,m}'
   s.public_header_files = 'react-native-image-crop-picker/Classes/{ImageCropPicker,Compression}.h'
+  s.dependency 'React'
   s.dependency 'RSKImageCropper'
   s.dependency 'QBImagePickerController'
 end
