@@ -12,6 +12,7 @@ s.author         = { "Joel Arvidsson" => "joel@oblador.se" }
 s.platform       = :ios, "7.0"
 s.source         = { :git => "https://github.com/RichieZhl/react-native-smart-barcode.git", :tag => "v#{s.version}" }
 s.source_files   = 'ios/RCTBarcode/**/*.{h,m}'
+s.exclude_files = "ios/RCTBarcode/**/ScannerRect.*"                                       
 s.resources      = "ios/raw/*.wav"
 s.preserve_paths = "**/*.js"
 s.dependency 'React'
