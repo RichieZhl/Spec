@@ -127,6 +127,9 @@ Pod::Spec.new do |s|
 
   s.subspec "RCTAnimation" do |ss|
     ss.dependency             "React/Core"
+    ss.prepare_command = <<-CMD
+      find ./Libraries/NativeAnimation/ -name "RCTNativeAnimatedNodesManager.h" | xargs sed -i "" 's#<RCTAnimation/RCTValueAnimatedNode.h>#"RCTValueAnimatedNode.h"#g'
+    CMD
     ss.source_files         = "Libraries/NativeAnimation/{Drivers/*,Nodes/*,*}.{h,m}"
     ss.header_dir           = "RCTAnimation"
   end
