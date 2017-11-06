@@ -40,6 +40,9 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig     = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
   s.preserve_paths          = "package.json", "LICENSE", "LICENSE-docs", "PATENTS"
   s.cocoapods_version       = ">= 1.2.0"
+  s.prepare_command = <<-CMD
+    find ./Libraries/NativeAnimation -name "RCTNativeAnimatedNodesManager.h" | xargs sed -i "" 's#<RCTAnimation/RCTValueAnimatedNode.h>#"RCTValueAnimatedNode.h"#g'
+  CMD
 
   s.subspec "Core" do |ss|
     ss.dependency             "Yoga", "#{package["version"]}.React"
@@ -127,9 +130,6 @@ Pod::Spec.new do |s|
 
   s.subspec "RCTAnimation" do |ss|
     ss.dependency             "React/Core"
-    ss.prepare_command = <<-CMD
-      find ./Libraries/NativeAnimation/ -name "RCTNativeAnimatedNodesManager.h" | xargs sed -i "" 's#<RCTAnimation/RCTValueAnimatedNode.h>#"RCTValueAnimatedNode.h"#g'
-    CMD
     ss.source_files         = "Libraries/NativeAnimation/{Drivers/*,Nodes/*,*}.{h,m}"
     ss.header_dir           = "RCTAnimation"
   end
