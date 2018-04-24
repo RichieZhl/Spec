@@ -2,7 +2,7 @@ version = "2.3.0"
 
 Pod::Spec.new do |s|
 
-  s.name           = "RNViewShot"
+  s.name           = "react-native-view-shot"
   s.version        = version
   s.summary        = "Capture a React Native view to an image"
   s.homepage       = "https://github.com/gre/react-native-view-shot"
