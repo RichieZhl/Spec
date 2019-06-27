@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
 
   s.subspec "Video" do |ss|
     ss.source_files  = "ios/Video/*.{h,m}"
-    s.static_framework = true
   end
 
   s.subspec "VideoCaching" do |ss|
@@ -26,7 +25,6 @@ Pod::Spec.new do |s|
     ss.dependency "DVAssetLoaderDelegate", "~> 0.3.1"
 
     ss.source_files = "ios/VideoCaching/**/*.{h,m}"
-    s.static_framework = true
   end
 
   s.dependency "React"
