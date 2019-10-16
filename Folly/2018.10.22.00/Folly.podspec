@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'boost-for-react-native'
   spec.dependency 'DoubleConversion'
   spec.dependency 'glog'
-  spec.compiler_flags = '-DFOLLY_NO_CONFIG=1 -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_HAVE_PTHREAD=1 -Wno-comma -Wno-shorten-64-to-32 -Wno-documentation'
+  spec.compiler_flags = '-DFOLLY_NO_CONFIG=1 -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_HAVE_PTHREAD=1 -Wno-comma -Wno-shorten-64-to-32 -Wno-documentation -Wno-error'
   spec.source_files = 'folly/String.cpp',
                       'folly/Conv.cpp',
                       'folly/Demangle.cpp',
@@ -37,7 +37,7 @@ Pod::Spec.new do |spec|
                       'folly/Traits.h',
                       'folly/Utility.h',
                       'folly/lang/Exception.h',
-                      # 'folly/portability/Config.h',
+                      'folly/portability/Config.h',
                       'folly/CPortability.h',
                       'folly/CppAttributes.h',
                       'folly/dynamic.h',
