@@ -37,7 +37,7 @@ Pod::Spec.new do |spec|
                       'folly/Traits.h',
                       'folly/Utility.h',
                       'folly/lang/Exception.h',
-                      'folly/portability/Config.h',
+                      # 'folly/portability/Config.h',
                       'folly/CPortability.h',
                       'folly/CppAttributes.h',
                       'folly/dynamic.h',
