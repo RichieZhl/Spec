@@ -31,7 +31,8 @@ Pod::Spec.new do |spec|
                       'folly/hash/SpookyHashV2.{h,cpp}',
                       'folly/lang/Assume.{h,cpp}',
                       'folly/lang/ColdClass.{h,cpp}',
-                      'folly/memory/detail/MallocImpl.{h,cpp}'
+                      'folly/memory/detail/MallocImpl.{h,cpp}',
+                      'folly/FB*.h'
 
   # workaround for https://github.com/facebook/react-native/issues/14326
   spec.public_header_files = 'folly/String.h',
