@@ -62,7 +62,7 @@ Pod::Spec.new do |s|
   s.cocoapods_version      = ">= 1.2.0"
 
   s.subspec "Default" do |ss|
-    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}", "ReactCommon/cxxreact/*.{h,cpp}", "ReactCommon/jsi/**/*.{h,cpp}", "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
+    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}", "ReactCommon/cxxreact/*.{h,cpp}", "ReactCommon/jsi/**/*.{h,cpp}", "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}", "Libraries/FBReactNativeSpec/**/*.{c,h,m,mm,S,cpp}"
     ss.exclude_files          = "React/CoreModules/**/*",
                                 "React/DevSupport/**/*",
                                 "React/Fabric/**/*",
