@@ -61,6 +61,10 @@ Pod::Spec.new do |s|
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
 
+  s.libraries           = "stdc++"
+
+  s.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
+
   s.subspec "Default" do |ss|
     ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}", 
                                 "ReactCommon/cxxreact/*.{h,cpp}", 
