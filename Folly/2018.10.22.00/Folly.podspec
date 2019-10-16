@@ -51,7 +51,7 @@ Pod::Spec.new do |spec|
                       'folly/Preprocessor.h',
                       'folly/Utility.h',
                       'folly/CPortability.h',
-                      'folly/lang/SafeAssert.h'
+                      'folly/lang/SafeAssert.h',
                       'folly/Memory.h',
                       'folly/Likely.h',
                       'folly/lang/Align.h',
