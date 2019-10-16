@@ -17,6 +17,25 @@ else
   source[:tag] = "v#{version}"
 end
 
+folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
+folly_version = '2018.10.22.00'
+boost_compiler_flags = '-Wno-documentation'
+
+header_subspecs = {
+  'ART'                  => 'Libraries/ART/**/*.h',
+  'CoreModules'          => 'React/CoreModules/**/*.h',
+  'RCTActionSheet'       => 'Libraries/ActionSheetIOS/*.h',
+  'RCTAnimation'         => 'Libraries/NativeAnimation/{Drivers/*,Nodes/*,*}.{h}',
+  'RCTBlob'              => 'Libraries/Blob/{RCTBlobManager,RCTFileReaderModule}.h',
+  'RCTImage'             => 'Libraries/Image/*.h',
+  'RCTLinking'           => 'Libraries/LinkingIOS/*.h',
+  'RCTNetwork'           => 'Libraries/Network/*.h',
+  'RCTPushNotification'  => 'Libraries/PushNotificationIOS/*.h',
+  'RCTSettings'          => 'Libraries/Settings/*.h',
+  'RCTText'              => 'Libraries/Text/**/*.h',
+  'RCTVibration'         => 'Libraries/Vibration/*.h',
+}
+
 Pod::Spec.new do |s|
   s.name                   = "React"
   s.version                = version
@@ -42,16 +61,49 @@ Pod::Spec.new do |s|
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
 
-  s.dependency "React-Core", version
-  s.dependency "React-Core/DevSupport", version
-  s.dependency "React-Core/RCTWebSocket", version
-  s.dependency "React-RCTActionSheet", version
-  s.dependency "React-RCTAnimation", version
-  s.dependency "React-RCTBlob", version
-  s.dependency "React-RCTImage", version
-  s.dependency "React-RCTLinking", version
-  s.dependency "React-RCTNetwork", version
-  s.dependency "React-RCTSettings", version
-  s.dependency "React-RCTText", version
-  s.dependency "React-RCTVibration", version
+  s.subspec "Default" do |ss|
+    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}"
+    ss.exclude_files          = "React/CoreModules/**/*",
+                                "React/DevSupport/**/*",
+                                "React/Fabric/**/*",
+                                "React/Inspector/**/*"
+    ss.ios.exclude_files      = "React/**/RCTTV*.*"
+    ss.tvos.exclude_files     = "React/Modules/RCTClipboard*",
+                                "React/Views/RCTDatePicker*",
+                                "React/Views/RCTPicker*",
+                                "React/Views/RCTRefreshControl*",
+                                "React/Views/RCTSlider*",
+                                "React/Views/RCTSwitch*",
+    ss.private_header_files   = "React/Cxx*/*.h"
+  end
+
+  s.subspec "RCTWebSocket" do |ss|
+    ss.source_files = "Libraries/WebSocket/*.{h,m}"
+    ss.dependency "React/Default", version
+  end
+
+  # Add a subspec containing just the headers for each
+  # pod that should live under <React/*.h>
+  header_subspecs.each do |name, headers|
+    s.subspec name do |ss|
+      ss.source_files = headers
+      ss.dependency "React/Default"
+    end
+  end
+
+  s.subspec "DevSupport" do |ss|
+    ss.source_files = "React/DevSupport/*.{h,mm,m}",
+                      "React/Inspector/*.{h,mm,m}"
+
+    ss.dependency "React/Default", version
+    ss.dependency "React/RCTWebSocket", version
+    ss.dependency "React-jsinspector", version
+  end
+
+  s.dependency "Folly", folly_version
+  s.dependency "React-cxxreact", version
+  s.dependency "React-jsi", version
+  s.dependency "React-jsiexecutor", version
+  s.dependency "Yoga"
+  s.dependency "glog"
 end
