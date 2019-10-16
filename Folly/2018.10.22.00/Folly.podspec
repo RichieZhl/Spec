@@ -82,16 +82,7 @@ Pod::Spec.new do |spec|
                         'folly/memory/*.h',
                         'folly/memory/detail/*.h',
                         'folly/portability/*.h'
-  spec.public_header_files = 'folly/*.h',
-                        'folly/container/*.h',
-                        'folly/container/detail/*.h',
-                        'folly/detail/*.h',
-                        'folly/functional/*.h',
-                        'folly/hash/*.h',
-                        'folly/lang/*.h',
-                        'folly/memory/*.h',
-                        'folly/memory/detail/*.h',
-                        'folly/portability/*.h'
+  spec.public_header_files = 'folly/*.h'
   spec.libraries           = "stdc++"
   spec.pod_target_xcconfig = { "USE_HEADERMAP" => "NO",
                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
