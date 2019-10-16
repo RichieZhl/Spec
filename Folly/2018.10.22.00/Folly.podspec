@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
                       'folly/lang/Assume.{h,cpp}',
                       'folly/lang/ColdClass.{h,cpp}',
                       'folly/memory/detail/MallocImpl.{h,cpp}',
-                      'folly/FB*.h'
+                      'folly/*.h'
 
   # workaround for https://github.com/facebook/react-native/issues/14326
   spec.public_header_files = 'folly/String.h',
