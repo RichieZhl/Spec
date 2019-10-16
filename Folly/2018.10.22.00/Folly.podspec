@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
                       'folly/lang/Assume.cpp',
                       'folly/lang/ColdClass.cpp',
                       'folly/memory/detail/MallocImpl.cpp',
-                      'folly/Optional.h'
+                      'folly/**/*.h',
 
   # workaround for https://github.com/facebook/react-native/issues/14326
   spec.preserve_paths = 'folly/*.h',
