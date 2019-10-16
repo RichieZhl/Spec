@@ -22,18 +22,18 @@ folly_version = '2018.10.22.00'
 boost_compiler_flags = '-Wno-documentation'
 
 header_subspecs = {
-  'ART'                  => 'Libraries/ART/**/*.h',
-  'CoreModules'          => 'React/CoreModules/**/*.h',
-  'RCTActionSheet'       => 'Libraries/ActionSheetIOS/*.h',
-  'RCTAnimation'         => 'Libraries/NativeAnimation/{Drivers/*,Nodes/*,*}.{h}',
-  'RCTBlob'              => 'Libraries/Blob/{RCTBlobManager,RCTFileReaderModule}.h',
-  'RCTImage'             => 'Libraries/Image/*.h',
-  'RCTLinking'           => 'Libraries/LinkingIOS/*.h',
-  'RCTNetwork'           => 'Libraries/Network/*.h',
-  'RCTPushNotification'  => 'Libraries/PushNotificationIOS/*.h',
-  'RCTSettings'          => 'Libraries/Settings/*.h',
-  'RCTText'              => 'Libraries/Text/**/*.h',
-  'RCTVibration'         => 'Libraries/Vibration/*.h',
+  'ART'                  => 'Libraries/ART/**/*.{c,h,m,mm,S,cpp}',
+  'CoreModules'          => 'React/CoreModules/**/*.{c,h,m,mm,S,cpp}',
+  'RCTActionSheet'       => 'Libraries/ActionSheetIOS/*.{c,h,m,mm,S,cpp}',
+  'RCTAnimation'         => 'Libraries/NativeAnimation/{Drivers/*,Nodes/*,*}.{c,h,m,mm,S,cpp}',
+  'RCTBlob'              => 'Libraries/Blob/{RCTBlobManager,RCTFileReaderModule}.{c,h,m,mm,S,cpp}',
+  'RCTImage'             => 'Libraries/Image/*.{c,h,m,mm,S,cpp}',
+  'RCTLinking'           => 'Libraries/LinkingIOS/*.{c,h,m,mm,S,cpp}',
+  'RCTNetwork'           => 'Libraries/Network/*.{c,h,m,mm,S,cpp}',
+  'RCTPushNotification'  => 'Libraries/PushNotificationIOS/*.{c,h,m,mm,S,cpp}',
+  'RCTSettings'          => 'Libraries/Settings/*.{c,h,m,mm,S,cpp}',
+  'RCTText'              => 'Libraries/Text/**/*.{c,h,m,mm,S,cpp}',
+  'RCTVibration'         => 'Libraries/Vibration/*.{c,h,m,mm,S,cpp}',
 }
 
 Pod::Spec.new do |s|
@@ -62,11 +62,13 @@ Pod::Spec.new do |s|
   s.cocoapods_version      = ">= 1.2.0"
 
   s.subspec "Default" do |ss|
-    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}"
+    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}", "ReactCommon/cxxreact/*.{h,cpp}", "ReactCommon/jsi/**/*.{h,cpp}", "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
     ss.exclude_files          = "React/CoreModules/**/*",
                                 "React/DevSupport/**/*",
                                 "React/Fabric/**/*",
-                                "React/Inspector/**/*"
+                                "React/Inspector/**/*",
+                                "ReactCommon/cxxreact/SampleCxxModule.*",
+                                "ReactCommon/jsi/**/test/*"
     ss.ios.exclude_files      = "React/**/RCTTV*.*"
     ss.tvos.exclude_files     = "React/Modules/RCTClipboard*",
                                 "React/Views/RCTDatePicker*",
@@ -93,17 +95,18 @@ Pod::Spec.new do |s|
 
   s.subspec "DevSupport" do |ss|
     ss.source_files = "React/DevSupport/*.{h,mm,m}",
-                      "React/Inspector/*.{h,mm,m}"
+                      "React/Inspector/*.{h,mm,m}",
+                      "ReactCommon/jsinspector/*.{cpp,h}"
 
     ss.dependency "React/Default", version
     ss.dependency "React/RCTWebSocket", version
-    ss.dependency "React-jsinspector", version
+    # ss.dependency "React-jsinspector", version
   end
 
   s.dependency "Folly", folly_version
-  s.dependency "React-cxxreact", version
-  s.dependency "React-jsi", version
-  s.dependency "React-jsiexecutor", version
+  # s.dependency "React-cxxreact", version
+  # s.dependency "React-jsi", version
+  # s.dependency "React-jsiexecutor", version
   s.dependency "Yoga"
   s.dependency "glog"
 end
