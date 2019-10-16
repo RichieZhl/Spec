@@ -33,7 +33,7 @@ Pod::Spec.new do |spec|
                       'folly/lang/ColdClass.cpp',
                       'folly/memory/detail/MallocImpl.cpp',
                       'folly/Optional.h',
-                      'folly/Portability.h',
+                      # 'folly/Portability.h',
                       'folly/Traits.h',
                       'folly/Utility.h',
                       'folly/lang/Exception.h',
