@@ -17,9 +17,33 @@ Pod::Spec.new do |spec|
   spec.dependency 'DoubleConversion'
   spec.dependency 'glog'
   spec.compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_HAVE_PTHREAD=1 -Wno-comma -Wno-shorten-64-to-32 -Wno-documentation'
-  spec.source_files = 'folly/**/*.{h,cpp}'
+  spec.source_files = 'folly/String.cpp',
+                      'folly/Conv.cpp',
+                      'folly/Demangle.cpp',
+                      'folly/Format.cpp',
+                      'folly/ScopeGuard.cpp',
+                      'folly/Unicode.cpp',
+                      'folly/dynamic.cpp',
+                      'folly/json.cpp',
+                      'folly/json_pointer.cpp',
+                      'folly/container/detail/F14Table.cpp',
+                      'folly/detail/Demangle.cpp',
+                      'folly/hash/SpookyHashV2.cpp',
+                      'folly/lang/Assume.cpp',
+                      'folly/lang/ColdClass.cpp',
+                      'folly/memory/detail/MallocImpl.cpp'
 
   # workaround for https://github.com/facebook/react-native/issues/14326
+  spec.preserve_paths = 'folly/*.h',
+                        'folly/container/*.h',
+                        'folly/container/detail/*.h',
+                        'folly/detail/*.h',
+                        'folly/functional/*.h',
+                        'folly/hash/*.h',
+                        'folly/lang/*.h',
+                        'folly/memory/*.h',
+                        'folly/memory/detail/*.h',
+                        'folly/portability/*.h'
   spec.public_header_files = 'folly/String.h',
                             'folly/Conv.h',
                             'folly/Demangle.h',
