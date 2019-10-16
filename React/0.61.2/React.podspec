@@ -9,7 +9,7 @@ require "json"
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 version = package['version']
 
-source = { :git => 'https://github.com/facebook/react-native.git' }
+source = { :git => 'https://github.com/RichieZhl/react-native.git' }
 if version == '1000.0.0'
   # This is an unpublished version, use the latest commit hash of the react-native repo, which we’re presumably in.
   source[:commit] = `git rev-parse HEAD`.strip
@@ -69,6 +69,7 @@ Pod::Spec.new do |s|
     ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}", 
                                 "ReactCommon/cxxreact/*.{h,cpp}", 
                                 "ReactCommon/jsi/**/*.{h,cpp}", 
+                                "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}", 
                                 "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}", 
                                 "Libraries/FBReactNativeSpec/**/*.{c,h,m,mm,S,cpp}",
                                 "Libraries/RCTRequired/**/*.{c,h,m,mm,S,cpp}",
