@@ -4,7 +4,7 @@
 # LICENSE file in the root directory of this source tree.
 
 Pod::Spec.new do |spec|
-  spec.name = 'Glog'
+  spec.name = 'glog'
   spec.version = '0.3.5'
   spec.license = { :type => 'Google', :file => 'COPYING' }
   spec.homepage = 'https://github.com/google/glog'
