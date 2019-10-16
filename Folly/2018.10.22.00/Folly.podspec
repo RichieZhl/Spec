@@ -17,21 +17,21 @@ Pod::Spec.new do |spec|
   spec.dependency 'DoubleConversion'
   spec.dependency 'glog'
   spec.compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_HAVE_PTHREAD=1 -Wno-comma -Wno-shorten-64-to-32 -Wno-documentation'
-  spec.source_files = 'folly/String.cpp',
-                      'folly/Conv.cpp',
-                      'folly/Demangle.cpp',
-                      'folly/Format.cpp',
-                      'folly/ScopeGuard.cpp',
-                      'folly/Unicode.cpp',
-                      'folly/dynamic.cpp',
-                      'folly/json.cpp',
-                      'folly/json_pointer.cpp',
-                      'folly/container/detail/F14Table.cpp',
-                      'folly/detail/Demangle.cpp',
-                      'folly/hash/SpookyHashV2.cpp',
-                      'folly/lang/Assume.cpp',
-                      'folly/lang/ColdClass.cpp',
-                      'folly/memory/detail/MallocImpl.cpp'
+  spec.source_files = 'folly/String.{h,cpp}',
+                      'folly/Conv.{h,cpp}',
+                      'folly/Demangle.{h,cpp}',
+                      'folly/Format.{h,cpp}',
+                      'folly/ScopeGuard.{h,cpp}',
+                      'folly/Unicode.{h,cpp}',
+                      'folly/dynamic.{h,cpp}',
+                      'folly/json.{h,cpp}',
+                      'folly/json_pointer.{h,cpp}',
+                      'folly/container/detail/F14Table.{h,cpp}',
+                      'folly/detail/Demangle.{h,cpp}',
+                      'folly/hash/SpookyHashV2.{h,cpp}',
+                      'folly/lang/Assume.{h,cpp}',
+                      'folly/lang/ColdClass.{h,cpp}',
+                      'folly/memory/detail/MallocImpl.{h,cpp}'
 
   # workaround for https://github.com/facebook/react-native/issues/14326
   spec.public_header_files = 'folly/*.h',
