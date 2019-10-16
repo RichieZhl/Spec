@@ -34,16 +34,21 @@ Pod::Spec.new do |spec|
                       'folly/memory/detail/MallocImpl.{h,cpp}'
 
   # workaround for https://github.com/facebook/react-native/issues/14326
-  spec.public_header_files = 'folly/*.h',
-                        'folly/container/*.h',
-                        'folly/container/detail/*.h',
-                        'folly/detail/*.h',
-                        'folly/functional/*.h',
-                        'folly/hash/*.h',
-                        'folly/lang/*.h',
-                        'folly/memory/*.h',
-                        'folly/memory/detail/*.h',
-                        'folly/portability/*.h'
+  spec.public_header_files = 'folly/String.h',
+                            'folly/Conv.h',
+                            'folly/Demangle.h',
+                            'folly/Format.h',
+                            'folly/ScopeGuard.h',
+                            'folly/Unicode.h',
+                            'folly/dynamic.h',
+                            'folly/json.h',
+                            'folly/json_pointer.h',
+                            'folly/container/detail/F14Table.h',
+                            'folly/detail/Demangle.h',
+                            'folly/hash/SpookyHashV2.h',
+                            'folly/lang/Assume.h',
+                            'folly/lang/ColdClass.h',
+                            'folly/memory/detail/MallocImpl.h'
   spec.libraries           = "stdc++"
   spec.pod_target_xcconfig = { "USE_HEADERMAP" => "NO",
                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
