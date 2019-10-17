@@ -21,7 +21,7 @@ folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 
 folly_version = '2018.10.22.00'
 boost_compiler_flags = '-Wno-documentation'
 
-header_subspecs = {
+sources_subspecs = {
   'ART'                  => 'Libraries/ART/**/*.{c,h,m,mm,S,cpp}',
   'CoreModules'          => 'React/CoreModules/**/*.{c,h,m,mm,S,cpp}',
   'RCTActionSheet'       => 'Libraries/ActionSheetIOS/*.{c,h,m,mm,S,cpp}',
@@ -127,9 +127,10 @@ Pod::Spec.new do |s|
 
   # Add a subspec containing just the headers for each
   # pod that should live under <React/*.h>
-  header_subspecs.each do |name, headers|
+  sources_subspecs.each do |name, sources|
     s.subspec name do |ss|
-      ss.source_files = headers
+      ss.source_files = sources
+      ss.header_dir = name
       ss.dependency "React/Default", version
     end
   end
