@@ -113,6 +113,7 @@ Pod::Spec.new do |s|
                                 "React/Views/RCTSlider*",
                                 "React/Views/RCTSwitch*",
     ss.private_header_files   = "React/Cxx*/*.h"
+    ss.header_dir             = "React"
 
     ss.dependency "React/cxxreact", version
     ss.dependency "React/jsi", version
