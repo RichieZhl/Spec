@@ -101,7 +101,7 @@ Pod::Spec.new do |s|
 
   s.subspec "Default" do |ss|
     ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}",
-                                "Libraries/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,S,cpp}"
+                                "Libraries/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,S,cpp}",
                                 "Libraries/RCTRequired/RCTRequired/*.{c,h,m,mm,S,cpp}",
                                 "Libraries/FBLazyVector/**/*.{c,h,m,mm,S,cpp}",
                                 "Libraries/TypeSafety/**/*.{c,h,m,mm,S,cpp}"
