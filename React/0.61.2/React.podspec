@@ -9,7 +9,7 @@ require "json"
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 version = package['version']
 
-source = { :git => 'https://github.com/RichieZhl/react-native.git' }
+source = { :git => 'https://github.com/facebook/react-native.git' }
 if version == '1000.0.0'
   # This is an unpublished version, use the latest commit hash of the react-native repo, which we’re presumably in.
   source[:commit] = `git rev-parse HEAD`.strip
@@ -65,22 +65,46 @@ Pod::Spec.new do |s|
 
   s.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
 
+  s.subspec "React-jsinspector" do |ss|
+    ss.source_files           = "ReactCommon/jsinspector/*.{cpp,h}"
+    ss.header_dir             = 'jsinspector'
+  end
+
+  s.subspec "React-jsi" do |ss|
+    s.source_files           = "ReactCommon/jsi/**/*.{cpp,h}"
+    s.exclude_files          = "ReactCommon/jsi/**/test/*"
+    s.framework              = "JavaScriptCore"
+    s.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    s.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    s.header_dir             = "jsi"
+  end
+
+  s.subspec "React-jsiexecutor" do |ss|
+    ss.source_files         = "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.header_dir             = "jsireact"
+
+    ss.dependency "React/React-cxxreact", version
+    ss.dependency "React/React-jsi", version
+  end
+
+  s.subspec "React-cxxreact" do |ss|
+    ss.source_files           = "ReactCommon/cxxreact/*.{cpp,h}"
+    ss.exclude_files          = "ReactCommon/cxxreact/SampleCxxModule.*"
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.header_dir             = "cxxreact"
+
+    ss.dependency "React/React-jsinspector", version
+  end
+
   s.subspec "Default" do |ss|
-    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}", 
-                                "ReactCommon/cxxreact/*.{h,cpp}", 
-                                "ReactCommon/jsi/**/*.{h,cpp}", 
-                                "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}", 
-                                "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}", 
-                                "Libraries/FBReactNativeSpec/**/*.{c,h,m,mm,S,cpp}",
-                                "Libraries/RCTRequired/**/*.{c,h,m,mm,S,cpp}",
-                                "Libraries/FBLazyVector/**/*.{c,h,m,mm,S,cpp}",
-                                "Libraries/TypeSafety/**/*.{c,h,m,mm,S,cpp}"
+    ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}"
     ss.exclude_files          = "React/CoreModules/**/*",
                                 "React/DevSupport/**/*",
                                 "React/Fabric/**/*",
-                                "React/Inspector/**/*",
-                                "ReactCommon/cxxreact/SampleCxxModule.*",
-                                "ReactCommon/jsi/**/test/*"
+                                "React/Inspector/**/*"
     ss.ios.exclude_files      = "React/**/RCTTV*.*"
     ss.tvos.exclude_files     = "React/Modules/RCTClipboard*",
                                 "React/Views/RCTDatePicker*",
@@ -101,24 +125,24 @@ Pod::Spec.new do |s|
   header_subspecs.each do |name, headers|
     s.subspec name do |ss|
       ss.source_files = headers
-      ss.dependency "React/Default"
+      ss.dependency "React/Default", version
     end
   end
 
   s.subspec "DevSupport" do |ss|
     ss.source_files = "React/DevSupport/*.{h,mm,m}",
-                      "React/Inspector/*.{h,mm,m}",
-                      "ReactCommon/jsinspector/*.{cpp,h}"
+                      "React/Inspector/*.{h,mm,m}"
 
     ss.dependency "React/Default", version
     ss.dependency "React/RCTWebSocket", version
-    # ss.dependency "React-jsinspector", version
+    ss.dependency "React/React-jsinspector", version
   end
 
+  s.dependency "boost-for-react-native", "1.63.0"
   s.dependency "Folly", folly_version
-  # s.dependency "React-cxxreact", version
-  # s.dependency "React-jsi", version
-  # s.dependency "React-jsiexecutor", version
+  s.dependency "React/React-cxxreact", version
+  s.dependency "React/React-jsi", version
+  s.dependency "React/React-jsiexecutor", version
   s.dependency "Yoga"
   s.dependency "glog"
 end
