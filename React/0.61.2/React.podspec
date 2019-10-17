@@ -113,6 +113,10 @@ Pod::Spec.new do |s|
                                 "React/Views/RCTSlider*",
                                 "React/Views/RCTSwitch*",
     ss.private_header_files   = "React/Cxx*/*.h"
+
+    ss.dependency "React/React-cxxreact", version
+    ss.dependency "React/React-jsi", version
+    ss.dependency "React/React-jsiexecutor", version
   end
 
   s.subspec "RCTWebSocket" do |ss|
@@ -140,9 +144,6 @@ Pod::Spec.new do |s|
 
   s.dependency "boost-for-react-native", "1.63.0"
   s.dependency "Folly", folly_version
-  s.dependency "React/React-cxxreact", version
-  s.dependency "React/React-jsi", version
-  s.dependency "React/React-jsiexecutor", version
   s.dependency "Yoga"
   s.dependency "glog"
 end
