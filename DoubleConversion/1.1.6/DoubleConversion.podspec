@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
                   :tag => "v#{spec.version}" }
   spec.module_name = 'DoubleConversion'
   spec.header_dir = 'double-conversion'
-  spec.source_files = 'double-conversion/*.{h,cc}'
+  spec.source_files = 'double-conversion/src/*.{h,cc}'
   spec.compiler_flags = [
     '-Wno-unreachable-code',
     '-fno-omit-frame-pointer',
