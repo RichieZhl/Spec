@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
     '-fPIC'
   ]
   spec.libraries = "stdc++"
-  s.public_header_files = 'double-conversion/src/double-conversion.h'
+  spec.public_header_files = 'double-conversion/src/double-conversion.h'
 
   # Pinning to the same version as React.podspec.
   spec.platforms = { :ios => "9.0", :tvos => "9.2" }
