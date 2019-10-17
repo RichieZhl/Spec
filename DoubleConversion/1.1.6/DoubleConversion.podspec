@@ -22,9 +22,10 @@ Pod::Spec.new do |spec|
     '-fexceptions',
     '-Wall',
     '-Werror',
-    '-std=c++1y',
     '-fPIC'
   ]
+  spec.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
+
   spec.libraries = "stdc++"
   spec.public_header_files = 'double-conversion/double-conversion.h'
 
