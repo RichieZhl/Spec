@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
                   :tag => "v#{spec.version}" }
   spec.module_name = 'DoubleConversion'
   spec.header_dir = 'double-conversion'
-  spec.source_files = 'double-conversion/src/*.{h,cc}'
+  spec.source_files = 'src/*.{h,cc}'
   spec.compiler_flags = [
     '-Wno-unreachable-code',
     '-fno-omit-frame-pointer',
@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
     '-fPIC'
   ]
   spec.libraries = "stdc++"
-  spec.public_header_files = 'double-conversion/src/*.h'
+  spec.public_header_files = 'src/double-conversion.h'
 
   # Pinning to the same version as React.podspec.
   spec.platforms = { :ios => "9.0", :tvos => "9.2" }
