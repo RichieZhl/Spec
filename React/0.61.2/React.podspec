@@ -162,6 +162,7 @@ Pod::Spec.new do |s|
     ss.dependency "React/jsinspector", version
   end
 
+  s.dependency 'DoubleConversion'
   s.dependency "boost-for-react-native", "1.63.0"
   s.dependency "Folly", folly_version
   s.dependency "Yoga"
