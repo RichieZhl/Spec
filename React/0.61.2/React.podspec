@@ -99,6 +99,20 @@ Pod::Spec.new do |s|
     ss.dependency "React/jsi", version
   end
 
+  s.subspec "ReactCommon" do |ss|
+    ss.source_files = "ReactCommon/jscallinvoker/**/*.{cpp,h}",
+                      "ReactCommon/turbomodule/core/*.{cpp,h}",
+                      "ReactCommon/turbomodule/core/platform/ios/*.{mm,cpp,h}"
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
+                               "USE_HEADERMAP" => "YES",
+                               "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
+    ss.header_dir             = "ReactCommon"
+
+    ss.dependency "React/cxxreact", version
+    ss.dependency "React/jsi", version
+  end
+
   s.subspec "Default" do |ss|
     ss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}",
                                 "Libraries/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,S,cpp}",
@@ -121,6 +135,7 @@ Pod::Spec.new do |s|
     ss.dependency "React/cxxreact", version
     ss.dependency "React/jsi", version
     ss.dependency "React/jsiexecutor", version
+    ss.dependency "React/ReactCommon", version
   end
 
   s.subspec "RCTWebSocket" do |ss|
