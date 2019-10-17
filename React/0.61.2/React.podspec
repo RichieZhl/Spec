@@ -65,12 +65,12 @@ Pod::Spec.new do |s|
 
   s.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
 
-  s.subspec "React-jsinspector" do |ss|
+  s.subspec "jsinspector" do |ss|
     ss.source_files           = "ReactCommon/jsinspector/*.{cpp,h}"
     ss.header_dir             = 'jsinspector'
   end
 
-  s.subspec "React-jsi" do |ss|
+  s.subspec "jsi" do |ss|
     s.source_files           = "ReactCommon/jsi/**/*.{cpp,h}"
     s.exclude_files          = "ReactCommon/jsi/**/test/*"
     s.framework              = "JavaScriptCore"
@@ -79,24 +79,24 @@ Pod::Spec.new do |s|
     s.header_dir             = "jsi"
   end
 
-  s.subspec "React-jsiexecutor" do |ss|
-    ss.source_files         = "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
-    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
-    ss.header_dir             = "jsireact"
-
-    ss.dependency "React/React-cxxreact", version
-    ss.dependency "React/React-jsi", version
-  end
-
-  s.subspec "React-cxxreact" do |ss|
+  s.subspec "cxxreact" do |ss|
     ss.source_files           = "ReactCommon/cxxreact/*.{cpp,h}"
     ss.exclude_files          = "ReactCommon/cxxreact/SampleCxxModule.*"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
     ss.header_dir             = "cxxreact"
 
-    ss.dependency "React/React-jsinspector", version
+    ss.dependency "React/jsinspector", version
+  end
+
+  s.subspec "jsiexecutor" do |ss|
+    ss.source_files         = "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.header_dir             = "jsireact"
+
+    ss.dependency "React/cxxreact", version
+    ss.dependency "React/jsi", version
   end
 
   s.subspec "Default" do |ss|
@@ -114,9 +114,9 @@ Pod::Spec.new do |s|
                                 "React/Views/RCTSwitch*",
     ss.private_header_files   = "React/Cxx*/*.h"
 
-    ss.dependency "React/React-cxxreact", version
-    ss.dependency "React/React-jsi", version
-    ss.dependency "React/React-jsiexecutor", version
+    ss.dependency "React/cxxreact", version
+    ss.dependency "React/jsi", version
+    ss.dependency "React/jsiexecutor", version
   end
 
   s.subspec "RCTWebSocket" do |ss|
@@ -139,7 +139,7 @@ Pod::Spec.new do |s|
 
     ss.dependency "React/Default", version
     ss.dependency "React/RCTWebSocket", version
-    ss.dependency "React/React-jsinspector", version
+    ss.dependency "React/jsinspector", version
   end
 
   s.dependency "boost-for-react-native", "1.63.0"
