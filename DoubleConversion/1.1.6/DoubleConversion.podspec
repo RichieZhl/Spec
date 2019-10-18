@@ -27,7 +27,6 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
 
   spec.libraries = "stdc++"
-  spec.public_header_files = 'double-conversion/double-conversion.h'
 
   # Pinning to the same version as React.podspec.
   spec.platforms = { :ios => "9.0", :tvos => "9.2" }
