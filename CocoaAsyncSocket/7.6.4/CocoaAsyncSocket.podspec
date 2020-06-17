@@ -36,7 +36,7 @@ I'm not the author,just for build
   #   'CocoaAsyncSocket' => ['CocoaAsyncSocket/Assets/*.png']
   # }
 
-  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'CocoaAsyncSocket/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
