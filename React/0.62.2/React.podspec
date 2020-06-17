@@ -66,6 +66,29 @@ Pod::Spec.new do |s|
     ss.header_dir             = "FBLazyVector"
   end
 
+  s.subspec "React-jsi" do |ss|
+    ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
+    ss.source_files           = "ReactCommon/jsi/**/*.{cpp,h}"
+    ss.exclude_files          = "ReactCommon/jsi/**/test/*"
+    ss.framework              = "JavaScriptCore"
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.header_dir             = "jsi"
+  
+    ss.dependency "boost-for-react-native", "1.63.0"
+    ss.dependency "DoubleConversion"
+    ss.dependency "Folly", folly_version
+    ss.dependency "glog"
+  
+    ss.subspec "Default" do
+      # no-op
+    end
+  
+    ss.subspec "Fabric" do |sss|
+      sss.pod_target_xcconfig  = { "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED" }
+    end
+  end
+
   s.subspec "FBReactNativeSpec" do |ss|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
@@ -90,29 +113,6 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.source_files           = "Libraries/RCTRequired/**/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "RCTRequired"
-  end
-
-  s.subspec "React-jsi" do |ss|
-    ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
-    ss.source_files           = "ReactCommon/jsi/**/*.{cpp,h}"
-    ss.exclude_files          = "ReactCommon/jsi/**/test/*"
-    ss.framework              = "JavaScriptCore"
-    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
-    ss.header_dir             = "jsi"
-  
-    ss.dependency "boost-for-react-native", "1.63.0"
-    ss.dependency "DoubleConversion"
-    ss.dependency "Folly", folly_version
-    ss.dependency "glog"
-  
-    ss.subspec "Default" do
-      # no-op
-    end
-  
-    ss.subspec "Fabric" do |sss|
-      sss.pod_target_xcconfig  = { "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED" }
-    end
   end
 
   s.subspec "React-jsinspector" do |ss|
