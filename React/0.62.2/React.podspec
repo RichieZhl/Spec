@@ -190,12 +190,12 @@ Pod::Spec.new do |s|
       end
     end
   
-    s.dependency "Folly", folly_version
-    s.dependency "React/React-cxxreact"
-    s.dependency "React/React-jsi"
-    s.dependency "React/React-jsiexecutor"
-    s.dependency "Yoga", '1.14.1'
-    s.dependency "glog"
+    ss.dependency "Folly", folly_version
+    ss.dependency "React/React-cxxreact"
+    ss.dependency "React/React-jsi"
+    ss.dependency "React/React-jsiexecutor"
+    ss.dependency "Yoga", '1.14.1'
+    ss.dependency "glog"
   end
 
   s.subspec "RCTTypeSafety" do |ss|
@@ -397,5 +397,5 @@ Pod::Spec.new do |s|
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTVibrationHeaders"
   end
-  
+
 end
