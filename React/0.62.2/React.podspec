@@ -72,7 +72,7 @@ Pod::Spec.new do |s|
     ss.exclude_files          = "ReactCommon/jsi/**/test/*"
     ss.framework              = "JavaScriptCore"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/React/ReactCommon/jsi\"" }
     ss.header_dir             = "jsi"
   
     ss.dependency "boost-for-react-native", "1.63.0"
