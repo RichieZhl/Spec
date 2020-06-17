@@ -64,6 +64,7 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.source_files           = "Libraries/FBLazyVector/**/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBLazyVector"
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/Libraries/FBLazyVector\"" }
   end
 
   s.subspec "React-jsi" do |ss|
@@ -72,7 +73,7 @@ Pod::Spec.new do |s|
     ss.exclude_files          = "ReactCommon/jsi/**/test/*"
     ss.framework              = "JavaScriptCore"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/React/ReactCommon/jsi\"" }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_TARGET_SRCROOT)/ReactCommon/jsi\"" }
     ss.header_dir             = "jsi"
   
     ss.dependency "boost-for-react-native", "1.63.0"
@@ -113,12 +114,14 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.source_files           = "Libraries/RCTRequired/**/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "RCTRequired"
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/Libraries/RCTRequired\"" }
   end
 
   s.subspec "React-jsinspector" do |ss|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.source_files           = "ReactCommon/jsinspector/*.{cpp,h}"
     ss.header_dir             = 'jsinspector'
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/jsinspector\"" }
   end
 
   s.subspec "React-cxxreact" do |ss|
@@ -126,7 +129,7 @@ Pod::Spec.new do |s|
     ss.source_files           = "ReactCommon/cxxreact/*.{cpp,h}"
     ss.exclude_files          = "ReactCommon/cxxreact/SampleCxxModule.*"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_TARGET_SRCROOT)/ReactCommon/cxxreact\"" }
     ss.header_dir             = "cxxreact"
 
     ss.dependency "boost-for-react-native", "1.63.0"
@@ -140,7 +143,7 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.source_files         = "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_TARGET_SRCROOT)/ReactCommon/jsiexecutor\"" }
     ss.header_dir             = "jsireact"
 
     ss.dependency "React/React-cxxreact"
@@ -219,12 +222,13 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.header_dir             = "ReactCommon" # Use global header_dir for all subspecs for use_frameworks! compatibility
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
-                                "USE_HEADERMAP" => "YES",
-                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
 
     ss.subspec "callinvoker" do |sss|
       sss.source_files = "ReactCommon/callinvoker/**/*.{cpp,h}"
+
+      sss.pod_target_xcconfig = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/callinvoker\" \"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
+                                "USE_HEADERMAP" => "YES",
+                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
 
       sss.dependency "React/React-cxxreact"
       sss.dependency "DoubleConversion"
@@ -244,6 +248,10 @@ Pod::Spec.new do |s|
       sss.subspec "core" do |ssss|
         ssss.source_files = "ReactCommon/turbomodule/core/*.{cpp,h}",
                           "ReactCommon/turbomodule/core/platform/ios/*.{mm,cpp,h}"
+
+        ssss.pod_target_xcconfig = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/turbomodule/core\" \"$(PODS_ROOT)/boost-for-react-native\" \"$(PODS_ROOT)/Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
+              "USE_HEADERMAP" => "YES",
+              "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
       end
     end
   end
