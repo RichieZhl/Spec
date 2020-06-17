@@ -397,17 +397,5 @@ Pod::Spec.new do |s|
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTVibrationHeaders"
   end
-
-  s.dependency "React/React-Core"
-  s.dependency "React/React-Core/DevSupport"
-  s.dependency "React/React-Core/RCTWebSocket"
-  s.dependency "React/React-RCTActionSheet"
-  s.dependency "React/React-RCTAnimation"
-  s.dependency "React/React-RCTBlob"
-  s.dependency "React/React-RCTImage"
-  s.dependency "React/React-RCTLinking"
-  s.dependency "React/React-RCTNetwork"
-  s.dependency "React/React-RCTSettings"
-  s.dependency "React/React-RCTText"
-  s.dependency "React/React-RCTVibration"
+  
 end
