@@ -251,6 +251,25 @@ Pod::Spec.new do |s|
     end
   end
 
+  s.subspec "React-CoreModules" do |ss|
+    ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
+    ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
+    ss.source_files           = "React/CoreModules/**/*.{c,m,mm,cpp}"
+    ss.header_dir             = "CoreModules"
+    ss.pod_target_xcconfig    = {
+                                "USE_HEADERMAP" => "YES",
+                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
+                                "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/CoreModules\" \"$(PODS_ROOT)/Folly\""
+                              }
+
+    ss.dependency "React/FBReactNativeSpec", version
+    ss.dependency "Folly", folly_version
+    ss.dependency "React/RCTTypeSafety", version
+    ss.dependency "React/React-Core/CoreModulesHeaders", version
+    ss.dependency "React/React-RCTImage", version
+    ss.dependency "React/ReactCommon/turbomodule/core", version
+  end
+
   s.subspec "React-RCTActionSheet" do |ss|
     ss.platforms              = { :ios => "9.0", :tvos => "9.2" }
     ss.source_files           = "Libraries/ActionSheetIOS/*.{m}"
