@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "10.0", :tvos => "10.0" }
     ss.source_files           = "Libraries/FBLazyVector/**/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBLazyVector"
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/Libraries/FBLazyVector\"" }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/Libraries/FBLazyVector\"", "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
   end
 
   s.subspec "React-jsi" do |ss|
