@@ -4,6 +4,7 @@
 # LICENSE file in the root directory of this source tree.
 
 require "json"
+require_relative "./scripts/react_native_pods.rb"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 version = package['version']
@@ -106,6 +107,27 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "10.0" }
     ss.source_files           = "ReactCommon/reactperflogger/reactperflogger/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
+  end
+
+  s.subspec "FBReactNativeSpec" do |ss|
+    ss.platforms              = { :ios => "10.0" }
+    ss.source_files           = "React/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,cpp}"
+    ss.header_dir             = "FBReactNativeSpec"
+
+    s.pod_target_xcconfig    = {
+                               "USE_HEADERMAP" => "YES",
+                               "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
+                               "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\""
+                             }
+
+    ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/RCTRequired"
+    ss.dependency "React/RCTTypeSafety"
+    ss.dependency "React/React-Core"
+    ss.dependency "React/React-jsi"
+    ss.dependency "React/ReactCommon/turbomodule/core"
+
+    use_react_native_codegen! (ss)
   end
 
   s.subspec "React-cxxreact" do |ss|
@@ -284,6 +306,7 @@ Pod::Spec.new do |s|
                                }
   
     ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTAnimationHeaders"
@@ -302,6 +325,7 @@ Pod::Spec.new do |s|
                               }
 
     ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTBlobHeaders"
     ss.dependency "React/React-Core/RCTWebSocket"
@@ -322,6 +346,7 @@ Pod::Spec.new do |s|
                               }
 
     ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTImageHeaders"
@@ -337,7 +362,8 @@ Pod::Spec.new do |s|
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
-
+                              
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/React-Core/RCTLinkingHeaders"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
@@ -357,6 +383,7 @@ Pod::Spec.new do |s|
     ss.frameworks             = "MobileCoreServices"
 
     ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
@@ -376,6 +403,7 @@ Pod::Spec.new do |s|
                               }
 
     ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
@@ -423,6 +451,7 @@ Pod::Spec.new do |s|
                                   "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/CoreModules\" \"$(PODS_ROOT)/RCT-Folly\""
                                 }
 
+    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "RCT-Folly", folly_version
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/React-Core/CoreModulesHeaders"
