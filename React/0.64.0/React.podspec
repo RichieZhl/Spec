@@ -266,7 +266,7 @@ Pod::Spec.new do |s|
       sss.subspec "samples" do |ssss|
         ssss.source_files = "ReactCommon/react/nativemodule/samples/ReactCommon/**/*.{cpp,h}",
                             "ReactCommonreact/nativemodule/samples/platform/ios/**/*.{mm,cpp,h}"
-        ssss.dependency "ReactCommon/turbomodule/core"
+        ssss.dependency "React/ReactCommon/turbomodule/core"
       end
     end
   end
