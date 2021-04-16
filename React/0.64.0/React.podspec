@@ -423,12 +423,12 @@ Pod::Spec.new do |s|
                                   "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/CoreModules\" \"$(PODS_ROOT)/RCT-Folly\""
                                 }
 
-    s.dependency "RCT-Folly", folly_version
-    s.dependency "React/RCTTypeSafety"
-    s.dependency "React/React-Core/CoreModulesHeaders"
-    s.dependency "React/React-RCTImage", version
-    s.dependency "React/ReactCommon/turbomodule/core"
-    s.dependency "React/React-jsi"
+    ss.dependency "RCT-Folly", folly_version
+    ss.dependency "React/RCTTypeSafety"
+    ss.dependency "React/React-Core/CoreModulesHeaders"
+    ss.dependency "React/React-RCTImage", version
+    ss.dependency "React/ReactCommon/turbomodule/core"
+    ss.dependency "React/React-jsi"
   end
 
 end
