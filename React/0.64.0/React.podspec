@@ -271,25 +271,6 @@ Pod::Spec.new do |s|
     end
   end
 
-  s.subspec "FBReactNativeSpec" do |ss|
-    ss.platforms              = { :ios => "10.0" }
-    ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
-    ss.source_files           = "React/FBReactNativeSpec/**/*.{c,h,m,mm,cpp}"
-    ss.header_dir             = "FBReactNativeSpec"
-    ss.pod_target_xcconfig    = {
-                                 "USE_HEADERMAP" => "YES",
-                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
-                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\""
-                               }
-  
-    ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/RCTRequired"
-    ss.dependency "React/RCTTypeSafety"
-    ss.dependency "React/React-Core"
-    ss.dependency "React/React-jsi"
-    ss.dependency "React/ReactCommon/turbomodule/core"
-  end
-
   s.subspec "React-RCTAnimation" do |ss|
     ss.platforms              = { :ios => "10.0" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
@@ -305,7 +286,6 @@ Pod::Spec.new do |s|
     ss.dependency "RCT-Folly", folly_version
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/React-Core/RCTAnimationHeaders"
   end
 
@@ -322,7 +302,6 @@ Pod::Spec.new do |s|
                               }
 
     ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTBlobHeaders"
     ss.dependency "React/React-Core/RCTWebSocket"
@@ -343,7 +322,6 @@ Pod::Spec.new do |s|
                               }
 
     ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-Core/RCTImageHeaders"
@@ -360,7 +338,6 @@ Pod::Spec.new do |s|
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
 
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/React-Core/RCTLinkingHeaders"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
@@ -380,7 +357,6 @@ Pod::Spec.new do |s|
     ss.frameworks             = "MobileCoreServices"
 
     ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
@@ -400,7 +376,6 @@ Pod::Spec.new do |s|
                               }
 
     ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
@@ -430,7 +405,6 @@ Pod::Spec.new do |s|
     ss.frameworks             = "AudioToolbox"
 
     ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/FBReactNativeSpec"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
     ss.dependency "React/React-Core/RCTVibrationHeaders"
@@ -449,7 +423,6 @@ Pod::Spec.new do |s|
                                   "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/CoreModules\" \"$(PODS_ROOT)/RCT-Folly\""
                                 }
 
-    s.dependency "React/FBReactNativeSpec"
     s.dependency "RCT-Folly", folly_version
     s.dependency "React/RCTTypeSafety"
     s.dependency "React/React-Core/CoreModulesHeaders"
