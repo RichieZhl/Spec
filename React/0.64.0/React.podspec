@@ -91,20 +91,20 @@ Pod::Spec.new do |s|
 
   s.subspec "React-callinvoker" do |ss|
     ss.platforms              = { :ios => "10.0" }
-    ss.source_files           = "ReactCommon/callinvoker/**.{cpp,h}"
+    ss.source_files           = "ReactCommon/callinvoker/ReactCommon/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
   end
 
   s.subspec "React-runtimeexecutor" do |ss|
     ss.platforms              = { :ios => "10.0" }
-    ss.source_files           = "ReactCommon/runtimeexecutor/**.{cpp,h}"
+    ss.source_files           = "ReactCommon/runtimeexecutor/ReactCommon/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
     ss.dependency "React/React-jsi"
   end
 
   s.subspec "React-perflogger" do |ss|
     ss.platforms              = { :ios => "10.0" }
-    ss.source_files           = "ReactCommon/reactperflogger/**.{cpp,h}"
+    ss.source_files           = "ReactCommon/reactperflogger/reactperflogger/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
   end
 
@@ -434,6 +434,28 @@ Pod::Spec.new do |s|
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
     ss.dependency "React/React-Core/RCTVibrationHeaders"
+  end
+
+  s.subspec "React-CoreModules" do |ss|
+    ss.platforms              = { :ios => "10.0" }
+    ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
+    ss.source_files           = "React/CoreModules/**/*.{c,m,mm,cpp}"
+    ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
+    ss.header_dir             = "CoreModules"
+    
+    ss.pod_target_xcconfig    = {
+                                  "USE_HEADERMAP" => "YES",
+                                  "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
+                                  "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/CoreModules\" \"$(PODS_ROOT)/RCT-Folly\""
+                                }
+
+    s.dependency "React/FBReactNativeSpec"
+    s.dependency "RCT-Folly", folly_version
+    s.dependency "React/RCTTypeSafety"
+    s.dependency "React/React-Core/CoreModulesHeaders"
+    s.dependency "React/React-RCTImage", version
+    s.dependency "React/ReactCommon/turbomodule/core"
+    s.dependency "React/React-jsi"
   end
 
 end
