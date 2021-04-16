@@ -125,8 +125,6 @@ Pod::Spec.new do |s|
     ss.dependency "React/React-Core"
     ss.dependency "React/React-jsi"
     ss.dependency "React/ReactCommon/turbomodule/core"
-
-    use_react_native_codegen! (ss)
   end
 
   s.subspec "React-cxxreact" do |ss|
