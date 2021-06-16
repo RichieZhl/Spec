@@ -48,5 +48,7 @@ Pod::Spec.new do |s|
 
   s.preserve_paths = 'LICENSE', 'README.md', 'package.json', 'index.js'
 
+  s.framework = 'AssetsLibrary'
+
   s.dependency 'React'
 end
