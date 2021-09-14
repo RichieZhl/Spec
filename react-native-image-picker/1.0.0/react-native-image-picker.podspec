@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.source_files  = "ios/*.{h,m,mm}"
   
   s.platform     = :ios, "8.0"
+  s.ios.framework = 'MobileCoreServices'
   s.dependency 'React'
 end
