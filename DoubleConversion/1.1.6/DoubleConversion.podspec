@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
     '-Werror',
     '-fPIC'
   ]
-  spec.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }
+  spec.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
 
   spec.libraries = "stdc++"
 

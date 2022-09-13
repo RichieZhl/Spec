@@ -31,7 +31,7 @@ Pod::Spec.new do |spec|
   spec.libraries           = "stdc++"
   spec.compiler_flags      = '-Wno-shorten-64-to-32'
   spec.pod_target_xcconfig = { "USE_HEADERMAP" => "NO",
-                               "HEADER_SEARCH_PATHS" => "$(PODS_TARGET_SRCROOT)/src" }
+                               "HEADER_SEARCH_PATHS" => "$(PODS_TARGET_SRCROOT)/src", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
 
   # Pinning to the same version as React.podspec.
   spec.platforms = { :ios => "9.0", :tvos => "9.2" }
