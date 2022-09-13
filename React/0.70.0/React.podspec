@@ -56,7 +56,6 @@ Pod::Spec.new do |s|
   s.author                 = "Facebook, Inc. and its affiliates"
   s.platforms              = { :ios => "11.0" }
   s.source                 = source
-  s.libraries              = 'c++.1'
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
 
@@ -530,6 +529,7 @@ Pod::Spec.new do |s|
     ss.platforms = { :ios => "11.0" }
     ss.exclude_files        = "ReactCommon/react/renderer/graphics"
     ss.header_dir             = "react/renderer/graphics"
+    ss.libraries              = 'c++.1'
     ss.pod_target_xcconfig = { "USE_HEADERMAP" => "YES", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly/Fabric", folly_version
