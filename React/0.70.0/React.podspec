@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
   s.author                 = "Facebook, Inc. and its affiliates"
   s.platforms              = { :ios => "11.0" }
   s.source                 = source
-  s.libraries              = 'libc++'
+  s.libraries              = 'c++.1'
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
 
