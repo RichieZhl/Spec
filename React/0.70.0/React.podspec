@@ -748,7 +748,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    ss.subspec "mounting" do |ss|
+    ss.subspec "mounting" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/mounting/**/*.{m,mm,cpp,h}"
