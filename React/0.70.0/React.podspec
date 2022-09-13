@@ -831,11 +831,11 @@ Pod::Spec.new do |s|
 
     ss.subspec "rncore" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
-      sss.dependency             "React/React-Fabric/core", version
-      sss.dependency             "React/React-Fabric/components/view", version
-      sss.dependency             "React/React-Fabric/components/image", version
-      sss.dependency             "React/React-Fabric/components/imagemanager", version
-      
+      sss.dependency             "React/React-Fabric/core"
+      sss.dependency             "React/React-Fabric/components/view"
+      sss.dependency             "React/React-Fabric/components/image"
+      sss.dependency             "React/React-Fabric/imagemanager"
+
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/components/rncore/*.{m,mm,cpp,h}"
       sss.header_dir           = "react/renderer/components/rncore"
