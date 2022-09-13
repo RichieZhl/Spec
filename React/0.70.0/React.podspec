@@ -554,7 +554,7 @@ Pod::Spec.new do |s|
                               "ReactCommon/react/renderer/textlayoutmanager/tests",
                               "ReactCommon/react/renderer/textlayoutmanager/platform/android",
                               "ReactCommon/react/renderer/textlayoutmanager/platform/cxx"
-    ss.pod_target_xcconfig = { "USE_HEADERMAP" => "YES", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    ss.pod_target_xcconfig = { "USE_HEADERMAP" => "YES", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_TARGET_SRCROOT)/ReactCommon/react/renderer/graphics/platform/ios\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-jsiexecutor"
