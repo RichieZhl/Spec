@@ -718,7 +718,7 @@ Pod::Spec.new do |s|
       end
     end
   
-    sss.subspec "debug_core" do |sss|
+    ss.subspec "debug_core" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/debug/**/*.{m,mm,cpp,h}"
@@ -727,7 +727,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "debug_renderer" do |sss|
+    ss.subspec "debug_renderer" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/debug/**/*.{m,mm,cpp,h}"
@@ -736,7 +736,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "imagemanager" do |sss|
+    ss.subspec "imagemanager" do |sss|
       sss.dependency             "React-RCTImage", version
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
@@ -748,7 +748,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "mounting" do |ss|
+    ss.subspec "mounting" do |ss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/mounting/**/*.{m,mm,cpp,h}"
@@ -757,7 +757,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "scheduler" do |sss|
+    ss.subspec "scheduler" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/scheduler/**/*.{m,mm,cpp,h}"
@@ -765,7 +765,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "templateprocessor" do |sss|
+    ss.subspec "templateprocessor" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/templateprocessor/**/*.{m,mm,cpp,h}"
@@ -774,7 +774,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "textlayoutmanager" do |sss|
+    ss.subspec "textlayoutmanager" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.dependency             "React-Fabric/uimanager"
       sss.compiler_flags       = folly_compiler_flags
@@ -787,7 +787,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "uimanager" do |sss|
+    ss.subspec "uimanager" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/uimanager/**/*.{m,mm,cpp,h}"
@@ -796,7 +796,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "telemetry" do |sss|
+    ss.subspec "telemetry" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/telemetry/**/*.{m,mm,cpp,h}"
@@ -805,7 +805,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "leakchecker" do |sss|
+    ss.subspec "leakchecker" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/leakchecker/**/*.{cpp,h}"
@@ -814,7 +814,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "runtimescheduler" do |sss|
+    ss.subspec "runtimescheduler" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/runtimescheduler/**/*.{cpp,h}"
@@ -823,7 +823,7 @@ Pod::Spec.new do |s|
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
-    sss.subspec "utils" do |sss|
+    ss.subspec "utils" do |sss|
       sss.source_files         = "ReactCommon/react/utils/*.{m,mm,cpp,h}"
       sss.header_dir           = "react/utils"
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
@@ -832,9 +832,9 @@ Pod::Spec.new do |s|
     ss.subspec "rncore" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.dependency             "React/React-Fabric/core"
-      sss.dependency             "React/React-Fabric/view"
-      sss.dependency             "React/React-Fabric/image"
-      sss.dependency             "React/React-Fabric/imagemanager"
+      sss.dependency             "React/React-Fabric/components/view"
+      sss.dependency             "React/React-Fabric/components/image"
+      sss.dependency             "React/React-Fabric/components/imagemanager"
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/components/rncore/*.{m,mm,cpp,h}"
       sss.header_dir           = "react/renderer/components/rncore"
