@@ -521,7 +521,7 @@ Pod::Spec.new do |s|
     ss.header_dir             = "react/renderer/graphics"
     ss.pod_target_xcconfig  = { "USE_HEADERMAP" => "YES", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
-    spec.ios.framework = 'CoreGraphics'
+    ss.ios.framework = 'CoreGraphics'
 
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-Core/Default"
