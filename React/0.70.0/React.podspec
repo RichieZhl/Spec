@@ -511,59 +511,336 @@ Pod::Spec.new do |s|
     ss.dependency "hermes-engine"
   end
 
-  s.subspec "React-Fabric" do |ss|
-    ss.platforms = { :ios => "11.0" }
-    ss.source_files         = "ReactCommon/react/renderer/**/*.{m,mm,cpp,h}",
-                              "ReactCommon/react/utils/**/*.{m,mm,cpp,h}",
-                              "ReactCommon/butter/renderer/components/view/*.{cpp,h}"
-    ss.exclude_files        = "ReactCommon/react/renderer/graphics/tests",
-                              "ReactCommon/react/renderer/graphics/platform/android",
-                              "ReactCommon/react/renderer/graphics/platform/cxx",
-                              "ReactCommon/react/renderer/animations/tests",
-                              "ReactCommon/react/renderer/attributedstring/tests",
-                              "ReactCommon/butter/tests",
-                              "ReactCommon/react/renderer/core/tests",
-                              "ReactCommon/react/renderer/components/activityindicator/tests",
-                              "ReactCommon/react/renderer/components/image/tests",
-                              "ReactCommon/react/renderer/components/inputaccessory/tests",
-                              "ReactCommon/react/renderer/components/legacyviewmanagerinterop/tests",
-                              "ReactCommon/react/renderer/components/modal/tests",
-                              "ReactCommon/react/renderer/components/root/tests",
-                              "ReactCommon/react/renderer/components/safeareaview/tests",
-                              "ReactCommon/react/renderer/components/scrollview/tests",
-                              "ReactCommon/react/renderer/components/slider/tests/**/*",
-                              "ReactCommon/react/renderer/components/slider/platform/android",
-                              "ReactCommon/react/renderer/components/text/tests",
-                              "ReactCommon/react/renderer/components/textinput/iostextinput/tests",
-                              "ReactCommon/react/renderer/components/unimplementedview/tests",
-                              "ReactCommon/react/renderer/components/view/tests",
-                              "ReactCommon/react/debug/tests",
-                              "ReactCommon/react/renderer/debug/tests",
-                              "ReactCommon/react/renderer/imagemanager/tests",
-                              "ReactCommon/react/renderer/imagemanager/platform/android",
-                              "ReactCommon/react/renderer/imagemanager/platform/cxx",
-                              "ReactCommon/react/renderer/textlayoutmanager/tests",
-                              "ReactCommon/react/renderer/textlayoutmanager/platform/android",
-                              "ReactCommon/react/renderer/textlayoutmanager/platform/cxx",
-                              "ReactCommon/react/renderer/mounting/tests",
-                              "ReactCommon/react/renderer/telemetry/tests",
-                              "ReactCommon/react/renderer/leakchecker/tests",
-                              "ReactCommon/react/renderer/runtimescheduler/tests",
-                              "ReactCommon/react/renderer/templateprocessor/tests",
-                              "ReactCommon/react/renderer/uimanager/tests",
-                              "ReactCommon/react/renderer/textlayoutmanager/tests",
-                              "ReactCommon/react/renderer/textlayoutmanager/platform/android",
-                              "ReactCommon/react/renderer/textlayoutmanager/platform/cxx"
+  s.subspec "React-graphics" do |ss|
+    ss.platforms              = { :ios => "12.4", :tvos => "12.4" }
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.source_files           = "ReactCommon/react/renderer/graphics/**/*.{m,mm,cpp,h}"
+    ss.exclude_files          = "ReactCommon/react/renderer/graphics/tests",
+                                "ReactCommon/react/renderer/graphics/platform/android",
+                                "ReactCommon/react/renderer/graphics/platform/cxx"
     ss.header_dir             = "react/renderer/graphics"
-    ss.pod_target_xcconfig = { "USE_HEADERMAP" => "YES", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_TARGET_SRCROOT)/ReactCommon/react/renderer/graphics/platform/ios\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    ss.pod_target_xcconfig  = { "USE_HEADERMAP" => "NO", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly/Fabric", folly_version
+    ss.dependency "React/React-Core/Default"
+  end
+
+  s.subspec "React-Fabric" do |ss|
+    ss.platforms = { :ios => "11.0" }
+    ss.exclude_files        = "ReactCommon/react/renderer/graphics"
+    ss.header_dir             = "react/renderer/graphics"
+    ss.pod_target_xcconfig = { "USE_HEADERMAP" => "YES", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+
+    ss.dependency "RCT-Folly/Fabric", folly_version
+    ss.dependency "React/React-graphics"
     ss.dependency "React/React-jsiexecutor"
     ss.dependency "React/RCTRequired"
     ss.dependency "React/RCTTypeSafety"
     ss.dependency "React/ReactCommon/turbomodule/core"
     ss.dependency "React/React-jsi"
-    ss.dependency "React/React-Core/Default"
+
+    ss.subspec "animations" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/animations/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/animations/tests"
+      sss.header_dir           = "react/renderer/animations"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    ss.subspec "attributedstring" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/attributedstring/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/attributedstring/tests"
+      sss.header_dir           = "react/renderer/attributedstring"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    ss.subspec "butter" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/butter/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/butter/tests"
+      sss.header_dir           = "butter"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    ss.subspec "config" do |sss|
+      sss.source_files         = "ReactCommon/react/config/*.{m,mm,cpp,h}"
+      sss.header_dir           = "react/config"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\"" }
+    end
+  
+    ss.subspec "core" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags + ' ' + boost_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/core/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/core/tests"
+      sss.header_dir           = "react/renderer/core"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    ss.subspec "componentregistry" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/componentregistry/**/*.{m,mm,cpp,h}"
+      sss.header_dir           = "react/renderer/componentregistry"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    ss.subspec "componentregistrynative" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/componentregistry/native/**/*.{m,mm,cpp,h}"
+      sss.header_dir           = "react/renderer/componentregistry/native"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    ss.subspec "components" do |sss|
+      sss.subspec "activityindicator" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/activityindicator/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/activityindicator/tests"
+        ssss.header_dir           = "react/renderer/components/activityindicator"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "image" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/image/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/image/tests"
+        ssss.header_dir           = "react/renderer/components/image"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "inputaccessory" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/inputaccessory/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/inputaccessory/tests"
+        ssss.header_dir           = "react/renderer/components/inputaccessory"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "legacyviewmanagerinterop" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/legacyviewmanagerinterop/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/legacyviewmanagerinterop/tests"
+        ssss.header_dir           = "react/renderer/components/legacyviewmanagerinterop"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/Headers/Private/React-Core\"" }
+      end
+  
+      sss.subspec "modal" do |ssss|
+        sss.dependency             "RCT-Folly/Fabric", folly_version
+        sss.compiler_flags       = folly_compiler_flags
+        sss.source_files         = "ReactCommon/react/renderer/components/modal/**/*.{m,mm,cpp,h}"
+        sss.exclude_files        = "ReactCommon/react/renderer/components/modal/tests"
+        sss.header_dir           = "react/renderer/components/modal"
+        sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "root" do |ssss|
+        sss.dependency             "RCT-Folly/Fabric", folly_version
+        sss.compiler_flags       = folly_compiler_flags
+        sss.source_files         = "ReactCommon/react/renderer/components/root/**/*.{m,mm,cpp,h}"
+        sss.exclude_files        = "ReactCommon/react/renderer/components/root/tests"
+        sss.header_dir           = "react/renderer/components/root"
+        sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "safeareaview" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/safeareaview/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/safeareaview/tests"
+        ssss.header_dir           = "react/renderer/components/safeareaview"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "scrollview" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/scrollview/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/scrollview/tests"
+        ssss.header_dir           = "react/renderer/components/scrollview"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "slider" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/slider/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/slider/tests/**/*",
+                                   "react/renderer/components/slider/platform/android"
+        ssss.header_dir           = "react/renderer/components/slider"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "text" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/text/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/text/tests"
+        ssss.header_dir           = "react/renderer/components/text"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "textinput" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/textinput/iostextinput/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/textinput/iostextinput/tests"
+        ssss.header_dir           = "react/renderer/components/iostextinput"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "unimplementedview" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/unimplementedview/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/unimplementedview/tests"
+        ssss.header_dir           = "react/renderer/components/unimplementedview"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+  
+      sss.subspec "view" do |ssss|
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.dependency             "Yoga"
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/view/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/view/tests"
+        ssss.header_dir           = "react/renderer/components/view"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
+    end
+  
+    sss.subspec "debug_core" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/debug/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/debug/tests"
+      sss.header_dir           = "react/debug"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "debug_renderer" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/debug/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/debug/tests"
+      sss.header_dir           = "react/renderer/debug"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "imagemanager" do |sss|
+      sss.dependency             "React-RCTImage", version
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/imagemanager/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/imagemanager/tests",
+                                "ReactCommon/react/renderer/imagemanager/platform/android",
+                                "ReactCommon/react/renderer/imagemanager/platform/cxx"
+      sss.header_dir           = "react/renderer/imagemanager"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "mounting" do |ss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/mounting/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/mounting/tests"
+      sss.header_dir           = "react/renderer/mounting"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "scheduler" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/scheduler/**/*.{m,mm,cpp,h}"
+      sss.header_dir           = "react/renderer/scheduler"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "templateprocessor" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/templateprocessor/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/templateprocessor/tests"
+      sss.header_dir           = "react/renderer/templateprocessor"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "textlayoutmanager" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.dependency             "React-Fabric/uimanager"
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/textlayoutmanager/platform/ios/**/*.{m,mm,cpp,h}",
+                                "ReactCommon/react/renderer/textlayoutmanager/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/textlayoutmanager/tests",
+                                "ReactCommon/react/renderer/textlayoutmanager/platform/android",
+                                "ReactCommon/react/renderer/textlayoutmanager/platform/cxx"
+      sss.header_dir           = "react/renderer/textlayoutmanager"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "uimanager" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/uimanager/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/uimanager/tests"
+      sss.header_dir           = "react/renderer/uimanager"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "telemetry" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/telemetry/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/telemetry/tests"
+      sss.header_dir           = "react/renderer/telemetry"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "leakchecker" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/leakchecker/**/*.{cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/leakchecker/tests"
+      sss.header_dir           = "react/renderer/leakchecker"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "runtimescheduler" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/runtimescheduler/**/*.{cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/runtimescheduler/tests"
+      sss.header_dir           = "react/renderer/runtimescheduler"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+  
+    sss.subspec "utils" do |sss|
+      sss.source_files         = "ReactCommon/react/utils/*.{m,mm,cpp,h}"
+      sss.header_dir           = "react/utils"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+
+    ss.subspec "rncore" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.dependency             "React/React-Fabric/core"
+      sss.dependency             "React/React-Fabric/view"
+      sss.dependency             "React/React-Fabric/image"
+      sss.dependency             "React/React-Fabric/imagemanager"
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/components/rncore/*.{m,mm,cpp,h}"
+      sss.header_dir           = "react/renderer/components/rncore"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+    
   end
 
 end
