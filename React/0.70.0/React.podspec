@@ -737,7 +737,7 @@ Pod::Spec.new do |s|
     end
   
     ss.subspec "imagemanager" do |sss|
-      sss.dependency             "React-RCTImage", version
+      sss.dependency             "React/React-RCTImage"
       sss.dependency             "RCT-Folly/Fabric", folly_version
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/imagemanager/**/*.{m,mm,cpp,h}"
@@ -776,7 +776,7 @@ Pod::Spec.new do |s|
   
     ss.subspec "textlayoutmanager" do |sss|
       sss.dependency             "RCT-Folly/Fabric", folly_version
-      sss.dependency             "React-Fabric/uimanager"
+      sss.dependency             "React/React-Fabric/uimanager"
       sss.compiler_flags       = folly_compiler_flags
       sss.source_files         = "ReactCommon/react/renderer/textlayoutmanager/platform/ios/**/*.{m,mm,cpp,h}",
                                 "ReactCommon/react/renderer/textlayoutmanager/*.{m,mm,cpp,h}"
