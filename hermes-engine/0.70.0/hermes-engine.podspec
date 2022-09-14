@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.license     = "MIT"
   spec.author      = "Facebook"
   spec.source      = source
-  spec.platforms   = { :osx => "10.13", :ios => "12.4" }
+  spec.platforms   = { :osx => "10.13", :ios => "11" }
 
   spec.preserve_paths      = ["destroot/bin/*"]
   spec.source_files        = "destroot/include/**/*.h"

@@ -487,22 +487,22 @@ Pod::Spec.new do |s|
     ss.dependency "hermes-engine"
   end
 
-  # s.subspec "React-graphics" do |ss|
-  #   ss.platforms              = { :ios => "11.0", :tvos => "12.4" }
-  #   ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-  #   ss.source_files           = "ReactCommon/react/renderer/graphics/**/*.{m,mm,cpp,h}"
-  #   ss.exclude_files          = "ReactCommon/react/renderer/graphics/tests",
-  #                               "ReactCommon/react/renderer/graphics/platform/android",
-  #                               "ReactCommon/react/renderer/graphics/platform/cxx"
-  #   ss.header_dir             = "react/renderer/graphics"
-  #   ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+  s.subspec "React-graphics" do |ss|
+    ss.platforms              = { :ios => "11.0", :tvos => "12.4" }
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.source_files           = "ReactCommon/react/renderer/graphics/**/*.{m,mm,cpp,h}"
+    ss.exclude_files          = "ReactCommon/react/renderer/graphics/tests",
+                                "ReactCommon/react/renderer/graphics/platform/android",
+                                "ReactCommon/react/renderer/graphics/platform/cxx"
+    ss.header_dir             = "react/renderer/graphics"
+    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
-  #   ss.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
-  #   ss.libraries          = 'c++.1'
+    ss.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
+    ss.libraries              = 'c++.1'
 
-  #   ss.dependency "RCT-Folly/Fabric", folly_version
-  #   ss.dependency "React/React-Core/Default"
-  # end
+    ss.dependency "RCT-Folly/Fabric", folly_version
+    ss.dependency "React/React-Core/Default"
+  end
 
   # s.subspec "React-Fabric" do |ss|
   #   ss.platforms = { :ios => "11.0" }
