@@ -496,7 +496,7 @@ Pod::Spec.new do |s|
                                 "ReactCommon/react/renderer/graphics/platform/android",
                                 "ReactCommon/react/renderer/graphics/platform/cxx"
     ss.header_dir             = "react/renderer/graphics"
-    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/../../../\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
     ss.libraries              = 'c++'
