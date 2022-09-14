@@ -822,4 +822,27 @@ Pod::Spec.new do |s|
     
   end
 
+  s.subspec "React-RCTFabric" do |ss|
+    ss.source_files           = "React/Fabric/**/*.{c,h,m,mm,S,cpp}"
+    ss.exclude_files          = "React/Fabric/**/tests/*",
+                              "React/Fabric/**/android/*",
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.header_dir             = "React"
+    ss.module_name            = "RCTFabric"
+    ss.framework              = "JavaScriptCore"
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/Headers/Private/React-Core\" \"$(PODS_ROOT)/Headers/Public/React-Codegen\" \"${PODS_CONFIGURATION_BUILD_DIR}/React-Codegen/React_Codegen.framework/Headers\"" }
+    ss.xcconfig               = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/glog\" \"$(PODS_ROOT)/RCT-Folly\"", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+                                "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"  }
+
+    ss.dependency "React/React-Core"
+    ss.dependency "React/React-Fabric"
+    ss.dependency "React/React-RCTImage"
+    ss.dependency "RCT-Folly/Fabric", folly_version
+
+    ss.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = "React/Fabric/Tests/**/*.{mm}"
+      test_spec.framework = "XCTest"
+    end
+  end
+
 end
