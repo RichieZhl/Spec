@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
-  s.prefix_header_contents = '#ifdef __OBJC__','#include <float.h>','#import <UIKit/UIKit.h>','#else','#ifndef FOUNDATION_EXPORT','#if defined(__cplusplus)','#define FOUNDATION_EXPORT extern "C"','#else','#define FOUNDATION_EXPORT extern','#endif','#endif','#endif'
+  s.prefix_header_contents = '#ifdef __OBJC__','#include <float.h>','#endif'
 
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "11.0" }
@@ -499,7 +499,7 @@ Pod::Spec.new do |s|
     ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
-    ss.libraries              = 'c++.1'
+    ss.libraries              = 'c++'
 
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-Core/Default"
