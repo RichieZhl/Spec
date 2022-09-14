@@ -24,6 +24,7 @@ Pod::Spec.new do |spec|
       '-fPIC'
   ]
   spec.platforms = { :ios => "9.0", :tvos => "9.2" }
+  spec.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
 
   # Set this environment variable when *not* using the `:path` option to install the pod.
   # E.g. when publishing this spec to a spec repo.

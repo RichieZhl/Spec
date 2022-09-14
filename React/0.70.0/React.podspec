@@ -58,6 +58,8 @@ Pod::Spec.new do |s|
   s.source                 = source
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
+  s.ios.framework = 'UIKit'
+  s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
 
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "11.0" }
@@ -116,11 +118,7 @@ Pod::Spec.new do |s|
     ss.source_files           = "React/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBReactNativeSpec"
 
-    s.pod_target_xcconfig    = {
-                               "USE_HEADERMAP" => "YES",
-                               "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
-                               "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\""
-                             }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly", folly_version
     ss.dependency "React/RCTRequired"
@@ -235,9 +233,7 @@ Pod::Spec.new do |s|
     ss.exclude_files          = "ReactCommon/react/bridging/tests"
     ss.header_dir             = "react/bridging"
     ss.compiler_flags         = folly_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\"",
-                                "USE_HEADERMAP" => "YES",
-                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\"", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
 
     ss.dependency "RCT-Folly", folly_version
     ss.dependency "React/React-jsi"
@@ -248,7 +244,6 @@ Pod::Spec.new do |s|
     ss.header_dir             = "ReactCommon" # Use global header_dir for all subspecs for use_frameworks! compatibility
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\" \"$(PODS_ROOT)/Headers/Private/React-bridging/react/bridging\" \"$(PODS_CONFIGURATION_BUILD_DIR)/React-bridging/react_bridging.framework/Headers\"",
-                                  "USE_HEADERMAP" => "YES",
                                   "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
   
     ss.subspec "turbomodule" do |sss|
@@ -299,7 +294,6 @@ Pod::Spec.new do |s|
     ss.compiler_flags         = folly_compiler_flags
     ss.header_dir             = "RCTTypeSafety"
     ss.pod_target_xcconfig    = {
-                                  "USE_HEADERMAP" => "YES",
                                   "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                   "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/Libraries/TypeSafety\""
                                 }
@@ -324,7 +318,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTAnimation"
     ss.pod_target_xcconfig    = {
-                                 "USE_HEADERMAP" => "YES",
                                  "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                  "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                                }
@@ -344,7 +337,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTBlob"
     ss.pod_target_xcconfig    = {
-                                "USE_HEADERMAP" => "YES",
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
@@ -365,7 +357,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTImage"
     ss.pod_target_xcconfig    = {
-                                "USE_HEADERMAP" => "YES",
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
@@ -383,7 +374,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTLinking"
     ss.pod_target_xcconfig    = {
-                                "USE_HEADERMAP" => "YES",
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
@@ -401,7 +391,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTNetwork"
     ss.pod_target_xcconfig    = {
-                                "USE_HEADERMAP" => "YES",
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
@@ -422,7 +411,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTSettings"
     ss.pod_target_xcconfig    = {
-                                "USE_HEADERMAP" => "YES",
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
@@ -451,7 +439,6 @@ Pod::Spec.new do |s|
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTVibration"
     ss.pod_target_xcconfig    = {
-                                "USE_HEADERMAP" => "YES",
                                 "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\""
                               }
@@ -472,7 +459,6 @@ Pod::Spec.new do |s|
     ss.header_dir             = "CoreModules"
     
     ss.pod_target_xcconfig    = {
-                                  "USE_HEADERMAP" => "YES",
                                   "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                   "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/CoreModules\" \"$(PODS_ROOT)/RCT-Folly\""
                                 }
@@ -519,9 +505,7 @@ Pod::Spec.new do |s|
                                 "ReactCommon/react/renderer/graphics/platform/android",
                                 "ReactCommon/react/renderer/graphics/platform/cxx"
     ss.header_dir             = "react/renderer/graphics"
-    ss.pod_target_xcconfig  = { "USE_HEADERMAP" => "YES", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
-
-    ss.ios.framework = 'CoreGraphics'
+    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-Core/Default"
@@ -532,7 +516,7 @@ Pod::Spec.new do |s|
     ss.exclude_files        = "ReactCommon/react/renderer/graphics"
     ss.header_dir             = "react/renderer/graphics"
     ss.libraries              = 'c++.1'
-    ss.pod_target_xcconfig = { "USE_HEADERMAP" => "YES", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    ss.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-graphics"
