@@ -108,7 +108,7 @@ Pod::Spec.new do |s|
   s.subspec "React-perflogger" do |ss|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files           = "ReactCommon/reactperflogger/reactperflogger/*.{cpp,h}"
-    ss.header_dir             = "ReactCommon"
+    ss.header_dir             = "reactperflogger"
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/reactperflogger/reactperflogger\"" }
   end
 
