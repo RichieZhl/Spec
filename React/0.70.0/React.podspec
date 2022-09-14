@@ -613,21 +613,21 @@ Pod::Spec.new do |s|
       end
   
       sss.subspec "modal" do |ssss|
-        sss.dependency             "RCT-Folly/Fabric", folly_version
-        sss.compiler_flags       = folly_compiler_flags
-        sss.source_files         = "ReactCommon/react/renderer/components/modal/**/*.{m,mm,cpp,h}"
-        sss.exclude_files        = "ReactCommon/react/renderer/components/modal/tests"
-        sss.header_dir           = "react/renderer/components/modal"
-        sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/modal/**/*.{m,mm,cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/renderer/components/modal/tests"
+        ssss.header_dir           = "react/renderer/components/modal"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
       end
   
       sss.subspec "root" do |ssss|
-        sss.dependency             "RCT-Folly/Fabric", folly_version
-        sss.compiler_flags       = folly_compiler_flags
-        sss.source_files         = "ReactCommon/react/renderer/components/root/**/*.{m,mm,cpp,h}"
+        ssss.dependency             "RCT-Folly/Fabric", folly_version
+        ssss.compiler_flags       = folly_compiler_flags
+        ssss.source_files         = "ReactCommon/react/renderer/components/root/**/*.{m,mm,cpp,h}"
         sss.exclude_files        = "ReactCommon/react/renderer/components/root/tests"
-        sss.header_dir           = "react/renderer/components/root"
-        sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+        ssss.header_dir           = "react/renderer/components/root"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
       end
   
       sss.subspec "safeareaview" do |ssss|
