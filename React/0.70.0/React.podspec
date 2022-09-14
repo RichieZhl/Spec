@@ -59,6 +59,7 @@ Pod::Spec.new do |s|
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
+  s.prefix_header_contents = '#ifdef __OBJC__','#include <float.h>','#import <UIKit/UIKit.h>','#else','#ifndef FOUNDATION_EXPORT','#if defined(__cplusplus)','#define FOUNDATION_EXPORT extern "C"','#else','#define FOUNDATION_EXPORT extern','#endif','#endif','#endif'
 
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "11.0" }
