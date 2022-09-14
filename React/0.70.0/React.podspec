@@ -58,7 +58,7 @@ Pod::Spec.new do |s|
   s.source                 = source
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
-  s.ios.framework = 'UIKit'
+  s.ios.frameworks          = 'UIKit'
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
 
   s.subspec "React-jsi" do |ss|
@@ -67,7 +67,7 @@ Pod::Spec.new do |s|
     ss.exclude_files          = "ReactCommon/jsi/**/test/*"
     ss.framework              = "JavaScriptCore"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
     ss.header_dir             = "jsi"
   
     ss.dependency "boost", "1.76.0"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
     end
   
     ss.subspec "Fabric" do |sss|
-      sss.pod_target_xcconfig  = { "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED" }
+      sss.pod_target_xcconfig  = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED" }
     end
   end
 
@@ -88,14 +88,14 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files           = "ReactCommon/jsinspector/*.{cpp,h}"
     ss.header_dir             = 'jsinspector'
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/jsinspector\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/jsinspector\"" }
   end
 
   s.subspec "React-callinvoker" do |ss|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files           = "ReactCommon/callinvoker/ReactCommon/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/callinvoker/ReactCommon\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/callinvoker/ReactCommon\"" }
   end
 
   s.subspec "React-runtimeexecutor" do |ss|
@@ -103,14 +103,14 @@ Pod::Spec.new do |s|
     ss.source_files           = "ReactCommon/runtimeexecutor/ReactCommon/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
     ss.dependency "React/React-jsi"
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/runtimeexecutor/ReactCommon\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/runtimeexecutor/ReactCommon\"" }
   end
 
   s.subspec "React-perflogger" do |ss|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files           = "ReactCommon/reactperflogger/reactperflogger/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/reactperflogger/reactperflogger\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/reactperflogger/reactperflogger\"" }
   end
 
   s.subspec "FBReactNativeSpec" do |ss|
@@ -118,7 +118,7 @@ Pod::Spec.new do |s|
     ss.source_files           = "React/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBReactNativeSpec"
 
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly", folly_version
     ss.dependency "React/RCTRequired"
@@ -132,7 +132,7 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files           = "ReactCommon/logger/*.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/logger\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/logger\"" }
     ss.header_dir             = "logger"
     
     ss.dependency "glog"
@@ -143,7 +143,7 @@ Pod::Spec.new do |s|
     ss.source_files           = "ReactCommon/cxxreact/*.{cpp,h}"
     ss.exclude_files          = "ReactCommon/cxxreact/SampleCxxModule.*"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
     ss.header_dir             = "cxxreact"
 
     ss.dependency "boost", "1.76.0"
@@ -161,7 +161,7 @@ Pod::Spec.new do |s|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files         = "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
     ss.header_dir             = "jsireact"
 
     ss.dependency "React/React-cxxreact"
@@ -183,7 +183,7 @@ Pod::Spec.new do |s|
       "GCC_PREPROCESSOR_DEFINITIONS" => "RCT_METRO_PORT=${RCT_METRO_PORT}",
       "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
     }
-    ss.user_target_xcconfig   = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/Headers/Private/React-Core\""}
+    ss.user_target_xcconfig   = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/Headers/Private/React\""}
     ss.subspec "Default" do |sss|
       sss.source_files           = "React/**/*.{c,h,m,mm,S,cpp}"
       sss.exclude_files          = "React/CoreModules/**/*",
@@ -261,7 +261,7 @@ Pod::Spec.new do |s|
       sss.subspec "core" do |ssss|
         ssss.source_files = "ReactCommon/react/nativemodule/core/ReactCommon/**/*.{cpp,h}",
                             "ReactCommon/react/nativemodule/core/platform/ios/**/*.{mm,cpp,h}"
-        ssss.pod_target_xcconfig = {"HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/ReactCommon/react/nativemodule/core/ReactCommon\" \"$(PODS_ROOT)/ReactCommon/react/nativemodule/core/platform/ios\""}
+        ssss.pod_target_xcconfig = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/ReactCommon/react/nativemodule/core/ReactCommon\" \"$(PODS_ROOT)/ReactCommon/react/nativemodule/core/platform/ios\""}
       end
 
       sss.subspec "react_debug_core" do |ssss|
@@ -481,6 +481,7 @@ Pod::Spec.new do |s|
     ss.public_header_files    = "ReactCommon/hermes/executor/HermesExecutorFactory.h"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = {
+                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", 
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/..\" \"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/libevent/include\"",
                                 "GCC_PREPROCESSOR_DEFINITIONS" => "HERMES_ENABLE_DEBUGGER=1",
                               }
@@ -505,7 +506,9 @@ Pod::Spec.new do |s|
                                 "ReactCommon/react/renderer/graphics/platform/android",
                                 "ReactCommon/react/renderer/graphics/platform/cxx"
     ss.header_dir             = "react/renderer/graphics"
-    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    ss.pod_target_xcconfig  = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+
+    s.ios.frameworks          = 'CoreGraphics'
 
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-Core/Default"
