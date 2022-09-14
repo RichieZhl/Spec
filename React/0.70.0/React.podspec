@@ -114,7 +114,7 @@ Pod::Spec.new do |s|
 
   s.subspec "FBReactNativeSpec" do |ss|
     ss.platforms              = { :ios => "11.0" }
-    ss.source_files           = "React/FBReactNativeSpec/FBReactNativeSpec/*.{c,h,m,mm,cpp}"
+    ss.source_files           = "React/FBReactNativeSpec/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBReactNativeSpec"
 
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/React/FBReactNativeSpec\" \"$(PODS_ROOT)/RCT-Folly\"" }
