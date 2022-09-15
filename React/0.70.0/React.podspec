@@ -180,8 +180,7 @@ Pod::Spec.new do |s|
       "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/RCT-Folly\" \"${PODS_ROOT}/Headers/Public/React-hermes\" \"${PODS_ROOT}/Headers/Public/hermes-engine\" \"$(PODS_ROOT)/Yoga\" \"$(PODS_ROOT)/Headers/Public/ReactCommon\" \"$(PODS_ROOT)/Headers/Public/React-RCTFabric\"",
       "FRAMEWORK_SEARCH_PATHS" => "\"${PODS_CONFIGURATION_BUILD_DIR}/React-hermes\"",
       "DEFINES_MODULE" => "YES",
-      "GCC_PREPROCESSOR_DEFINITIONS" => "RCT_METRO_PORT=${RCT_METRO_PORT}",
-      "OTHER_CFLAGS" => "$(inherited) -DRCT_NEW_ARCH_ENABLED=1"
+      "GCC_PREPROCESSOR_DEFINITIONS" => "RCT_METRO_PORT=${RCT_METRO_PORT}"
     }
     ss.user_target_xcconfig   = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/Headers/Private/React\""}
     ss.subspec "Default" do |sss|
@@ -193,6 +192,8 @@ Pod::Spec.new do |s|
                                   "React/Tests/**/*",
                                   "React/Inspector/**/*"
       sss.private_header_files   = "React/Cxx*/*.h"
+
+      sss.pod_target_xcconfig    = { "OTHER_CFLAGS" => "$(inherited) -DRCT_NEW_ARCH_ENABLED=1" }
     end
   
     ss.subspec "DevSupport" do |sss|
