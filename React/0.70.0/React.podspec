@@ -192,8 +192,6 @@ Pod::Spec.new do |s|
                                   "React/Tests/**/*",
                                   "React/Inspector/**/*"
       sss.private_header_files   = "React/Cxx*/*.h"
-
-      sss.pod_target_xcconfig    = { "OTHER_CFLAGS" => "$(inherited) -DRCT_NEW_ARCH_ENABLED=1" }
     end
   
     ss.subspec "DevSupport" do |sss|
