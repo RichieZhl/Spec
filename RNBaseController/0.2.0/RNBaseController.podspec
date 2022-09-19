@@ -34,9 +34,10 @@ React Native 基础控制器
   s.public_header_files = 'RNBaseController/Classes/*.h'
 
   s.prepare_command = <<-CMD
-                    curl -O https://raw.githubusercontent.com/RichieZhl/RNBaseController/master/react_native_pods.rb
-                  CMD
-  
+    curl -O https://raw.githubusercontent.com/RichieZhl/RNBaseController/master/react_native_pods.rb
+  CMD
+
+  s.preserve_paths = 'react_native_pods.rb'
 
   s.dependency 'React'
 end
