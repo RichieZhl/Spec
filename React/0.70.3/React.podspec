@@ -507,9 +507,8 @@ Pod::Spec.new do |s|
 
   s.subspec "React-Fabric" do |ss|
     ss.platforms = { :ios => "11.0" }
-    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/Yoga\"" }
+    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
-    ss.dependency "React/React-Core"
     ss.dependency "RCT-Folly/Fabric", folly_version
     ss.dependency "React/React-graphics"
     ss.dependency "React/React-jsiexecutor"
