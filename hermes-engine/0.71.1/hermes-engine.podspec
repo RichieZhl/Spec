@@ -8,8 +8,7 @@ version = '0.71.1'
 source = {}
 git = "https://github.com/facebook/hermes.git"
 
-source[:http] = "http://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=com.facebook.react&a=react-native-artifacts&c=hermes-ios-release&e=tar.gz&v=#{version}" 
-# "https://repo1.maven.org/maven2/com/facebook/react/react-native-artifacts/#{version}/react-native-artifacts-#{version}-hermes-ios-release.tar.gz"
+source[:http] = "https://repo1.maven.org/maven2/com/facebook/react/react-native-artifacts/#{version}/react-native-artifacts-#{version}-hermes-ios-release.tar.gz"
 
 Pod::Spec.new do |spec|
   spec.name        = "hermes-engine"
