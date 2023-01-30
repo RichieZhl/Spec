@@ -21,12 +21,14 @@ Pod::Spec.new do |spec|
   spec.source      = source
   spec.platforms   = { :osx => "10.13", :ios => "12.4" }
 
-  spec.preserve_paths = ["destroot/bin/*"]
-  spec.source_files = "destroot/include/**/*.h"
-  spec.exclude_files = ["destroot/include/jsi/jsi/JSIDynamic.{h,cpp}", "destroot/include/jsi/jsi/jsilib-*.{h,cpp}"]
-  spec.header_mappings_dir = "destroot/include"
-  spec.ios.vendored_frameworks = "destroot/Library/Frameworks/universal/hermes.xcframework"
-  spec.osx.vendored_frameworks = "destroot/Library/Frameworks/macosx/hermes.framework"
+  spec.subspec 'Pre-built' do |ss|
+    ss.preserve_paths = ["destroot/bin/*"]
+    ss.source_files = "destroot/include/**/*.h"
+    ss.exclude_files = ["destroot/include/jsi/jsi/JSIDynamic.{h,cpp}", "destroot/include/jsi/jsi/jsilib-*.{h,cpp}"]
+    ss.header_mappings_dir = "destroot/include"
+    ss.ios.vendored_frameworks = "destroot/Library/Frameworks/universal/hermes.xcframework"
+    ss.osx.vendored_frameworks = "destroot/Library/Frameworks/macosx/hermes.framework"
+  end
 
   spec.xcconfig            = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17", "CLANG_CXX_LIBRARY" => "compiler-default" }
 end
