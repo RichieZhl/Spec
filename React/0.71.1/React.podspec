@@ -61,6 +61,8 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
   s.prefix_header_contents = '#ifdef __OBJC__','#include <float.h>','#endif'
 
+  s.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
+
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "11.0" }
     ss.source_files           = "ReactCommon/jsi/**/*.{cpp,h}"
