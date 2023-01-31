@@ -222,7 +222,7 @@ Pod::Spec.new do |s|
     ss.dependency "React/React-perflogger"
     ss.dependency "React/React-jsi"
     ss.dependency "React/React-jsiexecutor"
-    ss.dependency "Yoga", '1.14.2'
+    ss.dependency "Yoga", '1.14.3'
     ss.dependency "glog"
   end
 
