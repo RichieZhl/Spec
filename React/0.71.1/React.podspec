@@ -54,7 +54,7 @@ Pod::Spec.new do |s|
   s.homepage               = "http://facebook.github.io/react-native/"
   s.license                = package["license"]
   s.author                 = "Facebook, Inc. and its affiliates"
-  s.platforms              = { :ios => "11.0" }
+  s.platforms              = { :ios => "12.4" }
   s.source                 = source
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
   s.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
 
   s.subspec "React-jsi" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/jsi/**/*.{cpp,h}"
     ss.exclude_files          = "ReactCommon/jsi/**/test/*"
     ss.framework              = "JavaScriptCore"
@@ -87,21 +87,21 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-jsinspector" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/jsinspector/*.{cpp,h}"
     ss.header_dir             = 'jsinspector'
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/jsinspector\"" }
   end
 
   s.subspec "React-callinvoker" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/callinvoker/ReactCommon/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/callinvoker/ReactCommon\"" }
   end
 
   s.subspec "React-runtimeexecutor" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/runtimeexecutor/ReactCommon/*.{cpp,h}"
     ss.header_dir             = "ReactCommon"
     ss.dependency "React/React-jsi"
@@ -109,14 +109,14 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-perflogger" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/reactperflogger/reactperflogger/*.{cpp,h}"
     ss.header_dir             = "reactperflogger"
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/reactperflogger/reactperflogger\"" }
   end
 
   s.subspec "FBReactNativeSpec" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "React/FBReactNativeSpec/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBReactNativeSpec"
 
@@ -131,7 +131,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-logger" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/logger/*.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon/logger\"" }
@@ -141,7 +141,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-cxxreact" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/cxxreact/*.{cpp,h}"
     ss.exclude_files          = "ReactCommon/cxxreact/SampleCxxModule.*"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
@@ -160,7 +160,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-jsiexecutor" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files         = "ReactCommon/jsiexecutor/jsireact/*.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
@@ -229,7 +229,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-bridging" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "ReactCommon/react/bridging/**/*.{cpp,h}"
     ss.exclude_files          = "ReactCommon/react/bridging/tests"
     ss.header_dir             = "react/bridging"
@@ -241,7 +241,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "ReactCommon" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.header_dir             = "ReactCommon" # Use global header_dir for all subspecs for use_frameworks! compatibility
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\" \"$(PODS_ROOT)/Headers/Private/React-bridging/react/bridging\" \"$(PODS_CONFIGURATION_BUILD_DIR)/React-bridging/react_bridging.framework/Headers\"",
@@ -278,19 +278,19 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "FBLazyVector" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "Libraries/FBLazyVector/**/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "FBLazyVector"
   end
 
   s.subspec "RCTRequired" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "Libraries/RCTRequired/**/*.{c,h,m,mm,cpp}"
     ss.header_dir             = "RCTRequired"
   end
 
   s.subspec "RCTTypeSafety" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "Libraries/TypeSafety/**/*.{c,h,m,mm,cpp}"
     ss.compiler_flags         = folly_compiler_flags
     ss.header_dir             = "RCTTypeSafety"
@@ -304,7 +304,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTActionSheet" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "Libraries/ActionSheetIOS/*.{m}"
     ss.preserve_paths          = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTActionSheet"
@@ -312,7 +312,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTAnimation" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "Libraries/NativeAnimation/{Drivers/*,Nodes/*,*}.{m,mm}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -330,7 +330,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTBlob" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "Libraries/Blob/*.{h,m,mm}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -349,7 +349,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTImage" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "Libraries/Image/*.{m,mm}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -381,7 +381,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTNetwork" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "Libraries/Network/*.{m,mm}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -400,7 +400,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTSettings" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "Libraries/Settings/*.{m,mm}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -418,7 +418,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTText" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.source_files           = "Libraries/Text/**/*.{h,m}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
     ss.header_dir             = "RCTText"
@@ -427,7 +427,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-RCTVibration" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "Libraries/Vibration/*.{m,mm}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -445,7 +445,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-CoreModules" do |ss|
-    ss.platforms              = { :ios => "11.0" }
+    ss.platforms              = { :ios => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' -Wno-nullability-completeness'
     ss.source_files           = "React/CoreModules/**/*.{c,m,mm,cpp}"
     ss.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
@@ -465,7 +465,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Hermes" do |ss|
-    ss.platforms = { :osx => "10.14", :ios => "11.0" }
+    ss.platforms = { :osx => "10.14", :ios => "12.4" }
     ss.source_files           = "ReactCommon/hermes/executor/*.{cpp,h}",
                                 "ReactCommon/hermes/inspector/*.{cpp,h}",
                                 "ReactCommon/hermes/inspector/chrome/*.{cpp,h}",
@@ -491,7 +491,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-graphics" do |ss|
-    ss.platforms              = { :ios => "11.0", :tvos => "12.4" }
+    ss.platforms              = { :ios => "12.4", :tvos => "12.4" }
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.source_files           = "ReactCommon/react/renderer/graphics/**/*.{m,mm,cpp,h}"
     ss.exclude_files          = "ReactCommon/react/renderer/graphics/tests",
@@ -508,7 +508,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "React-Fabric" do |ss|
-    ss.platforms = { :ios => "11.0" }
+    ss.platforms = { :ios => "12.4" }
     ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
     ss.dependency "RCT-Folly/Fabric", folly_version
