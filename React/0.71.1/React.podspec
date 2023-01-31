@@ -16,7 +16,7 @@ else
   source[:tag] = "v#{version}"
 end
 
-folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
+folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32 -Wno-gnu-zero-variadic-macro-arguments'
 folly_version = '2021.07.22.00'
 boost_compiler_flags = '-Wno-documentation'
 
@@ -33,6 +33,18 @@ header_subspecs = {
   'RCTTextHeaders'              => 'Libraries/Text/**/*.h',
   'RCTVibrationHeaders'         => 'Libraries/Vibration/*.h',
 }
+
+header_search_paths = [
+  "$(PODS_TARGET_SRCROOT)/ReactCommon",
+  "$(PODS_ROOT)/boost",
+  "$(PODS_ROOT)/DoubleConversion",
+  "$(PODS_ROOT)/RCT-Folly",
+  "${PODS_ROOT}/Headers/Public/FlipperKit",
+  "$(PODS_ROOT)/Headers/Public/ReactCommon",
+  "$(PODS_ROOT)/Headers/Public/React-RCTFabric",
+  "$(PODS_ROOT)/Headers/Public/React-hermes",
+  "$(PODS_ROOT)/Headers/Public/hermes-engine"
+]
 
 Pod::Spec.new do |s|
   s.name                   = "React"
@@ -58,10 +70,15 @@ Pod::Spec.new do |s|
   s.source                 = source
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
-  s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
+  s.pod_target_xcconfig    = {
+                               "HEADER_SEARCH_PATHS" => header_search_paths,
+                               "DEFINES_MODULE" => "YES",
+                               "GCC_PREPROCESSOR_DEFINITIONS" => "RCT_METRO_PORT=${RCT_METRO_PORT}",
+                               "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+                               "FRAMEWORK_SEARCH_PATHS" => "\"$(PODS_CONFIGURATION_BUILD_DIR)/React-hermes\""
+                             }
+  s.user_target_xcconfig   = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/Headers/Private/React-Core\""}
   s.prefix_header_contents = '#ifdef __OBJC__','#include <float.h>','#endif'
-
-  s.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
 
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "12.4" }
@@ -228,27 +245,14 @@ Pod::Spec.new do |s|
     ss.dependency "glog"
   end
 
-  s.subspec "React-bridging" do |ss|
-    ss.platforms              = { :ios => "12.4" }
-    ss.source_files           = "ReactCommon/react/bridging/**/*.{cpp,h}"
-    ss.exclude_files          = "ReactCommon/react/bridging/tests"
-    ss.header_dir             = "react/bridging"
-    ss.compiler_flags         = folly_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/RCT-Folly\"" }
-
-    ss.dependency "RCT-Folly", folly_version
-    ss.dependency "React/React-jsi"
-  end
-
   s.subspec "ReactCommon" do |ss|
     ss.platforms              = { :ios => "12.4" }
     ss.header_dir             = "ReactCommon" # Use global header_dir for all subspecs for use_frameworks! compatibility
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\" \"$(PODS_ROOT)/Headers/Private/React-bridging/react/bridging\" \"$(PODS_CONFIGURATION_BUILD_DIR)/React-bridging/react_bridging.framework/Headers\"",
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
                                   "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
   
     ss.subspec "turbomodule" do |sss|
-      sss.dependency "React/React-bridging"
       sss.dependency "React/React-callinvoker"
       sss.dependency "React/React-perflogger"
       sss.dependency "React/React-Core"
@@ -258,10 +262,22 @@ Pod::Spec.new do |s|
       sss.dependency "React/React-logger"
       sss.dependency "DoubleConversion"
       sss.dependency "glog"
+
+      sss.subspec "bridging" do |ssss|
+        ssss.dependency             "React/React-jsi"
+        ssss.source_files         = "ReactCommon/react/bridging/**/*.{cpp,h}"
+        ssss.exclude_files        = "ReactCommon/react/bridging/tests"
+        ssss.header_dir           = "react/bridging"
+        ssss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+      end
   
       sss.subspec "core" do |ssss|
         ssss.source_files = "ReactCommon/react/nativemodule/core/ReactCommon/**/*.{cpp,h}",
                             "ReactCommon/react/nativemodule/core/platform/ios/**/*.{mm,cpp,h}"
+        excluded_files = ENV['USE_FRAMEWORKS'] == nil ?
+          "ReactCommon/react/nativemodule/core/ReactCommon/LongLivedObject.h" :
+          "ReactCommon/react/nativemodule/core/ReactCommon/{LongLivedObject,CallbackWrapper}.h"
+        ssss.exclude_files = excluded_files
         ssss.pod_target_xcconfig = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/ReactCommon/react/nativemodule/core/ReactCommon\" \"$(PODS_ROOT)/ReactCommon/react/nativemodule/core/platform/ios\""}
       end
 
@@ -725,6 +741,15 @@ Pod::Spec.new do |s|
                                 "ReactCommon/react/renderer/imagemanager/platform/android",
                                 "ReactCommon/react/renderer/imagemanager/platform/cxx"
       sss.header_dir           = "react/renderer/imagemanager"
+      sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
+    end
+
+    ss.subspec "mapbuffer" do |sss|
+      sss.dependency             "RCT-Folly/Fabric", folly_version
+      sss.compiler_flags       = folly_compiler_flags
+      sss.source_files         = "ReactCommon/react/renderer/mapbuffer/**/*.{m,mm,cpp,h}"
+      sss.exclude_files        = "ReactCommon/react/renderer/mapbuffer/tests"
+      sss.header_dir           = "ReactCommon/react/renderer/mapbuffer"
       sss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
     end
   
