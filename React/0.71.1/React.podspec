@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
   s.prefix_header_contents = '#ifdef __OBJC__','#include <float.h>','#endif'
 
-  s.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
+  s.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
 
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "12.4" }
@@ -500,7 +500,7 @@ Pod::Spec.new do |s|
     ss.header_dir             = "react/renderer/graphics"
     ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/RCT-Folly\"" }
 
-    ss.ios.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
+    ss.frameworks         = 'UIKit', 'Foundation', 'CoreGraphics'
     ss.libraries              = 'c++'
 
     ss.dependency "RCT-Folly/Fabric", folly_version
