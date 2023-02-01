@@ -100,7 +100,7 @@ Pod::Spec.new do |s|
     end
   
     ss.subspec "Fabric" do |sss|
-      sss.pod_target_xcconfig  = { "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED" }
+      sss.pod_target_xcconfig  = { "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DRCT_NEW_ARCH_ENABLED=1" }
     end
   end
 
@@ -860,7 +860,7 @@ Pod::Spec.new do |s|
     ss.framework              = "JavaScriptCore"
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/ReactCommon\" \"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/Headers/Private/React-Core\" \"$(PODS_ROOT)/Headers/Public/React-Codegen\" \"${PODS_CONFIGURATION_BUILD_DIR}/React-Codegen/React_Codegen.framework/Headers\"" }
     ss.xcconfig               = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/glog\" \"$(PODS_ROOT)/RCT-Folly\"", "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
-                                "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"  }
+                                "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DRCT_NEW_ARCH_ENABLED=1"  }
 
     ss.dependency "React/React-Core"
     ss.dependency "React/React-Fabric"
