@@ -101,21 +101,17 @@ Pod::Spec.new do |s|
     ss.dependency "hermes-engine", version
   end
 
-  # s.subspec "React-jsc" do |ss|
-  #   ss.platforms              = { :ios => "12.4" }
-  #   ss.source_files           = "ReactCommon/jsc/**/*.{cpp,h}"
-  #   ss.exclude_files          = "ReactCommon/jsc/**/test/*"
-  #   ss.framework              = "JavaScriptCore"
-  #   ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
-  #   ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
-  #   ss.header_dir             = "jsi"
+  s.subspec "React-jsc" do |ss|
+    ss.platforms              = { :ios => "12.4" }
+    ss.source_files           = "ReactCommon/jsc/**/*.{cpp,h}"
+    ss.exclude_files          = "ReactCommon/jsc/**/test/*"
+    ss.framework              = "JavaScriptCore"
+    ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
+    ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"" }
+    ss.header_dir             = "jsi"
   
-  #   ss.dependency "React/React-jsi"
-  
-  #   ss.subspec "Fabric" do |sss|
-  #     sss.pod_target_xcconfig  = { "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DRCT_NEW_ARCH_ENABLED=1" }
-  #   end
-  # end
+    ss.dependency "React/React-jsi"
+  end
 
   s.subspec "React-jsinspector" do |ss|
     ss.platforms              = { :ios => "12.4" }
@@ -255,8 +251,8 @@ Pod::Spec.new do |s|
     ss.dependency "RCT-Folly", folly_version
     ss.dependency "React/React-cxxreact"
     ss.dependency "React/React-perflogger"
-    ss.dependency "React/React-jsi"
-    # ss.dependency "React/React-jsc"
+    # ss.dependency "React/React-jsi"
+    ss.dependency "React/React-jsc"
     ss.dependency "React/React-jsiexecutor"
     ss.dependency "Yoga", '1.14.3'
     ss.dependency "glog"
