@@ -504,7 +504,7 @@ Pod::Spec.new do |s|
     ss.pod_target_xcconfig    = {
                                 
                                 "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/..\" \"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\" \"$(PODS_ROOT)/libevent/include\"",
-                                "GCC_PREPROCESSOR_DEFINITIONS" => "HERMES_ENABLE_DEBUGGER=1",
+                                # "GCC_PREPROCESSOR_DEFINITIONS" => "HERMES_ENABLE_DEBUGGER=1",
                               }
     ss.header_dir             = "reacthermes"
     ss.dependency "React/React-cxxreact"
