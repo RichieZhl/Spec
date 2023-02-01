@@ -87,7 +87,10 @@ Pod::Spec.new do |s|
     ss.source_files           = "ReactCommon/jsi/JSIDynamic.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"",
-                                  "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DRCT_NEW_ARCH_ENABLED=1" }
+                                  "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED -DRCT_NEW_ARCH_ENABLED=1",
+                                  "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+                                  "OTHER_CPLUSPLUSFLAGS" => "$(inherited) -DRCT_NEW_ARCH_ENABLED=1 -DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"
+                                }
     ss.header_dir             = "jsi"
   
     ss.dependency "boost", "1.76.0"
