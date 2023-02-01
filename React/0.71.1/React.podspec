@@ -71,8 +71,9 @@ Pod::Spec.new do |s|
   s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
   s.cocoapods_version      = ">= 1.2.0"
   s.pod_target_xcconfig    = {
+                               "USE_HEADERMAP" => "NO",
                                "HEADER_SEARCH_PATHS" => header_search_paths,
-                              #  "DEFINES_MODULE" => "YES",
+                               "DEFINES_MODULE" => "YES",
                                "GCC_PREPROCESSOR_DEFINITIONS" => "RCT_METRO_PORT=${RCT_METRO_PORT}",
                                "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
                                "FRAMEWORK_SEARCH_PATHS" => "\"$(PODS_CONFIGURATION_BUILD_DIR)/React-hermes\""
