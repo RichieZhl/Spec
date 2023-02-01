@@ -85,7 +85,7 @@ Pod::Spec.new do |s|
 
   s.subspec "React-jsi" do |ss|
     ss.platforms              = { :ios => "12.4" }
-    ss.source_files           = "ReactCommon/jsi/JSIDynamic.{cpp,h}"
+    ss.source_files           = "ReactCommon/jsi/jsi/JSIDynamic.{cpp,h}"
     ss.compiler_flags         = folly_compiler_flags + ' ' + boost_compiler_flags
     ss.pod_target_xcconfig    = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/RCT-Folly\" \"$(PODS_ROOT)/DoubleConversion\"",
                                   "OTHER_CFLAGS" => "$(inherited) -DRN_FABRIC_ENABLED",
