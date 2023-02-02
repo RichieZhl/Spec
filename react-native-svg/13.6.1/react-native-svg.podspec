@@ -32,6 +32,7 @@ TODO: Add long description of the pod here.
   s.pod_target_xcconfig = {
     'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/boost" "$(PODS_ROOT)/React/ReactCommon" "$(PODS_ROOT)/DoubleConversion" "$(PODS_ROOT)/RCT-Folly" "$(PODS_ROOT)/Yoga" ',
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+    "OTHER_CPLUSPLUSFLAGS" => "$(inherited) -DRCT_NEW_ARCH_ENABLED=1 -DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"
   }
   s.platforms       = { ios: '12.4', tvos: '11.0' }
   s.compiler_flags  = folly_compiler_flags + ' -DRN_FABRIC_ENABLED'
