@@ -52,7 +52,7 @@ TODO: Add long description of the pod here.
   s.subspec "common" do |ss|
     ss.source_files         = "react-native-screens/common/cpp/**/*.{cpp,h}"
     ss.header_dir           = "rnscreens"
-    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/react-native-screens/common/cpp\"" }
+    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/react-native-screens/common/cpp\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\"" }
   end
   
   # s.resource_bundles = {
@@ -62,5 +62,4 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'React'
-  s.dependency 'React/React-graphics'
 end

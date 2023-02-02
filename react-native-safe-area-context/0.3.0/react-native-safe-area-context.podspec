@@ -59,7 +59,7 @@ TODO: Add long description of the pod here.
     ss.dependency "React/React-RCTFabric"
     ss.dependency "react-native-safe-area-context/common"
     ss.source_files         = "react-native-safe-area-context/ios/Fabric/**/*.{h,m,mm}"
-    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/react-native-safe-area-context/cpp\"" }
+    ss.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/react-native-safe-area-context/cpp\" \"$(PODS_TARGET_SRCROOT)/ReactCommon\"" }
   end
   
   # s.resource_bundles = {
@@ -69,5 +69,4 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'React'
-  s.dependency 'React/React-graphics'
 end
