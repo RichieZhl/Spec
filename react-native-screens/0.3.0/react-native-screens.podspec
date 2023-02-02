@@ -62,4 +62,5 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'React'
+  s.dependency 'React/React-graphics'
 end
